@@ -1,10 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
-
 import Layout from './Layout'
-
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 
 const Footer = () => {
   return (
