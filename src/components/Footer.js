@@ -3,6 +3,7 @@ import React from 'react'
 import Layout from './Layout'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import buyMeACoffee from '../../public/images/yellow-button.png'
 
 const Footer = () => {
   return (
@@ -25,8 +26,8 @@ const Footer = () => {
           whileTap={{ scale: 0.9 }}
           className='w-[180px] md:w-[120px]'
         >
-          <img
-            src='https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png'
+          <Image
+            src={buyMeACoffee}
             alt='Buy Me A Coffee'
             width={300}
             height={200}
