@@ -16,7 +16,7 @@ function Home() {
         <title>Kshitj | Home </title>
         <meta name='description' content='description' />
       </Head>
-      <TransitionEffect/>
+      <TransitionEffect />
 
       <main className='flex items-center text-dark w-full min-h-screen dark:text-light'>
         <Layout className='pt-0 md:p-16 sm:pt-2'>
@@ -28,18 +28,23 @@ function Home() {
                 className='w-full h-auto lg:inline-block md:inline-block md:w-full '
                 priority
                 as='image'
+                width='300'
+                height='200'
                 sizes='(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               50vw'
               ></Image>
             </div>
             <div className='w-1/2 flex flex-col items-center self-center lg:w-full lg:text-center'>
-              <AnimatedText text='Turning Vision Into Reality With Code And Design.' className='xl:!text-5xl lg:!text-center lg:!text-4xl md:!text-3xl sm:!text-3xl' />
+              <AnimatedText
+                text='Turning Vision Into Reality With Code And Design.'
+                className='xl:!text-5xl lg:!text-center lg:!text-4xl md:!text-3xl sm:!text-3xl'
+              />
               <p className='my-4 text-base font-medium md:text-sm sm:text-xs text-justify'>
                 As a skilled full-stack developer, I am dedicated to turning
                 ideas into innovative web applications. Explore my latest
-                projects and articles, showcasing my expertise in
-                web design and development.
+                projects and articles, showcasing my expertise in web design and
+                development.
               </p>
               <div className='flex items-center self-start mt-2 lg:self-center'>
                 <Link
@@ -65,7 +70,13 @@ function Home() {
         </Layout>
         <HireMe />
         <div className='absolute right-8 bottom-8 inline-block w-24 md:hidden'>
-          <Image src={lightBult} alt='lightbulb' className='w-full h-auto' />
+          <Image
+            src={lightBult}
+            alt='lightbulb'
+            width='300'
+            height='200'
+            className='w-full h-auto'
+          />
         </div>
       </main>
     </>
