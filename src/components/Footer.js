@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import Layout from './Layout'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const Footer = () => {
   return (
@@ -16,6 +17,7 @@ const Footer = () => {
           Kshitij Adhikaree
         </Link>
 
+        
         <motion.a
           href='https://www.buymeacoffee.com/kshitijAd'
           target='_blank'
@@ -26,10 +28,11 @@ const Footer = () => {
           <img
             src='https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png'
             alt='Buy Me A Coffee'
-            width='300'
-            height='200'
+            width={300}
+            height={200}
           />
         </motion.a>
+        
       </Layout>
     </footer>
   )
