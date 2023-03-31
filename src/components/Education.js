@@ -52,7 +52,7 @@ const Education = () => {
             time='2023-2023'
             place='Tinkune, Kathmandu'
             info='As a web developer, my work involves designing and developing websites and web applications. 
-            This includes writing code in languages such as HTML, CSS, and JavaScript, as well as utilizing frameworks and libraries such as React, Angular, and Vue. 
+            This includes writing code in languages such as HTML, CSS, and JavaScript, as well as utilizing frameworks and libraries such as React, Express and NodeJS. 
             I also collaborate with designers, project managers, and other developers to ensure that the final product meets the clients needs and specifications. 
             Additionally, I test the website or application for functionality and troubleshoot any issues that arise. 
             In an ever-evolving field, its important for me to stay up-to-date with the latest technologies and trends to deliver high-quality products to clients.'
@@ -68,7 +68,7 @@ const Education = () => {
             and stay up-to-date with the latest technological developments.'
           />
           <Details
-            type='+2(High-School)'
+            type='High-School'
             time='2014-2016'
             place='Kathmandu, Nepal'
             info='During my high school years, I was part of the science major program which was focused on teaching students about various scientific fields.
