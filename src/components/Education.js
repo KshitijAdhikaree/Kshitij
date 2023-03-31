@@ -32,6 +32,7 @@ const Education = () => {
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ['start end', 'center start'],
+    layoutEffect: false,
   })
   return (
     <div className='my-64'>

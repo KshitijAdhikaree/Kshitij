@@ -27,6 +27,7 @@ function Home() {
                 alt='profilePic'
                 className='w-full h-auto lg:inline-block md:inline-block md:w-full '
                 priority
+                as='image'
                 sizes='(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,
               50vw'
@@ -42,7 +43,7 @@ function Home() {
               </p>
               <div className='flex items-center self-start mt-2 lg:self-center'>
                 <Link
-                  href='/dummy.pdf'
+                  href='/Resume.pdf'
                   target={'_blank'}
                   className='flex items-center bg-dark text-light p-2.5 px-6 rounded-lg text-lg font-semibold 
                   hover:bg-light hover:text-dark border-2 border-solid border-transparent hover:border-dark

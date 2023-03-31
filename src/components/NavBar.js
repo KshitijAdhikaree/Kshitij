@@ -100,7 +100,7 @@ const NavBar = () => {
 
         <nav className='flex items-center justify-center flex-wrap '>
           <motion.a
-            href='/'
+            href='https://twitter.com/KshitijAdhikar3'
             target={'_blank'}
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.9 }}
@@ -109,7 +109,7 @@ const NavBar = () => {
             <TwitterIcon />
           </motion.a>
           <motion.a
-            href='/'
+            href='https://github.com/KshitijAdhikaree'
             target={'_blank'}
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.9 }}
@@ -119,7 +119,7 @@ const NavBar = () => {
           </motion.a>
 
           <motion.a
-            href='/'
+            href='https://www.facebook.com/adhikareekshitij'
             target={'_blank'}
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.9 }}
@@ -128,7 +128,7 @@ const NavBar = () => {
             <FacebookIcon />
           </motion.a>
           <motion.a
-            href='/'
+            href='https://www.linkedin.com/in/kshitij-adhikaree-43771a1ab/'
             target={'_blank'}
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.9 }}
@@ -137,7 +137,7 @@ const NavBar = () => {
             <LinkedInIcon />
           </motion.a>
           <motion.a
-            href='/'
+            href='https://www.instagram.com/kshitij_adhikaree/'
             target={'_blank'}
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.9 }}
@@ -195,7 +195,7 @@ const NavBar = () => {
 
           <nav className='flex items-center justify-center '>
             <motion.a
-              href='/'
+              href='https://twitter.com/KshitijAdhikar3'
               target={'_blank'}
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}
@@ -204,7 +204,7 @@ const NavBar = () => {
               <TwitterIcon />
             </motion.a>
             <motion.a
-              href='/'
+              href='https://github.com/KshitijAdhikaree'
               target={'_blank'}
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}
@@ -213,7 +213,7 @@ const NavBar = () => {
               <GithubIcon />
             </motion.a>
             <motion.a
-              href='/'
+              href='https://www.linkedin.com/in/kshitij-adhikaree-43771a1ab/'
               target={'_blank'}
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}
@@ -222,7 +222,7 @@ const NavBar = () => {
               <LinkedInIcon />
             </motion.a>
             <motion.a
-              href='/'
+              href='https://www.instagram.com/kshitij_adhikaree/'
               target={'_blank'}
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}
@@ -231,7 +231,7 @@ const NavBar = () => {
               <InstagramIcon />
             </motion.a>
             <motion.a
-              href='/'
+              href='https://www.facebook.com/adhikareekshitij'
               target={'_blank'}
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}
