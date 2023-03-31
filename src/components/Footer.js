@@ -26,7 +26,7 @@ const Footer = () => {
           whileTap={{ scale: 0.9 }}
           className='w-[180px] md:w-[120px]'
         >
-          <Image
+          <img
             src='https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png'
             alt='Buy Me A Coffee'
             width='300'
