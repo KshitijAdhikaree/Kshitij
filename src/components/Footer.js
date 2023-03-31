@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import React from 'react'
-import { CoffeeIcon } from './Icons'
+
 import Layout from './Layout'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 const Footer = () => {
   return (
@@ -18,19 +19,6 @@ const Footer = () => {
           Kshitij Adhikaree
         </Link>
 
-        {/* <span className='flex items-center'>
-          Buy me a coffee &nbsp;
-          <motion.a
-            href='https://www.buymeacoffee.com/kshitijAd'
-            className='w-8'
-            target={'_blank'}
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <CoffeeIcon />
-          </motion.a>
-        </span> */}
-
         <motion.a
           href='https://www.buymeacoffee.com/kshitijAd'
           target='_blank'
@@ -38,7 +26,7 @@ const Footer = () => {
           whileTap={{ scale: 0.9 }}
           className='w-[180px] md:w-[120px]'
         >
-          <img
+          <Image
             src='https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png'
             alt='Buy Me A Coffee'
             width='300'
