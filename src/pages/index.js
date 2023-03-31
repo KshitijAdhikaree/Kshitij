@@ -58,7 +58,7 @@ function Home() {
                   Resume <LinkArrow className={'w-6 ml-1'} />
                 </Link>
                 <Link
-                  href='/mailto:adhikareekshitij@gmail.com'
+                  href='https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&to=adhikareekshitij@gmail.com&subject=Unable%20to%20reach%20you&body=Hello%2C%0A%0AI%20tried%20contacting%20you%20today%20but%20you%20seem%20to%20have%20missed%20my%20call.%20%0A%0APlease%20return%20my%20call%20as%20soon%20as%20you%E2%80%99re%20available.%20%0A%0AIn%20any%20case%2C%20I%20will%20try%20ringing%20you%20at%20a%20later%20time.%0A%0A%0ATy%2C%0A%0A%0A%0A'
                   target={'_blank'}
                   className='ml-4 text-lg font-medium capitalize text-dark underline dark:text-light md:text-base'
                 >

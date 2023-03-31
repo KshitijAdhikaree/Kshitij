@@ -93,26 +93,26 @@ const about = () => {
             </div>
             <div className='col-span-2 flex flex-col items-end justify-between xl:col-span-8 xl:flex-row xl:items-center md:order-3'>
               <div className='flex flex-col items-end justify-center xl:items-center'>
-                <span className='inline-block text-7xl font-bold md:text-6xl sm:text-5xl xs:text-4xl'>
+                <span className='inline-block text-7xl font-bold md:text-6xl sm:text-5xl xs:text-3xl'>
                   <AnimatedNumber value={10} /> +
                 </span>
-                <h2 className='text-xl font-medium capitalize text-dark/75 dark:text-light/75 xl:text-center md:text-lg sm:text-base xl:text-sm'>
+                <h2 className='text-xl font-medium capitalize text-dark/75 dark:text-light/75 xl:text-center md:text-lg sm:text-base xl:text-sm '>
                   Satisfied Clients
                 </h2>
               </div>
               <div className='flex flex-col items-end justify-center xl:items-center '>
-                <span className='inline-block text-7xl font-bold md:text-6xl sm:text-5xl xs:text-4xl'>
+                <span className='inline-block text-7xl font-bold md:text-6xl sm:text-5xl xs:text-3xl'>
                   <AnimatedNumber value={30} /> +
                 </span>
-                <h2 className='text-xl font-medium capitalize text-dark/75 dark:text-light/75 xl:text-center md:text-lg sm:text-base xl:text-sm'>
+                <h2 className='text-xl font-medium capitalize text-dark/75 dark:text-light/75 xl:text-center md:text-lg sm:text-base xl:text-sm '>
                   Projects Completed
                 </h2>
               </div>
               <div className='flex flex-col items-end justify-center xl:items-center'>
-                <span className='inline-block text-7xl font-bold md:text-6xl sm:text-5xl xs:text-4xl'>
+                <span className='inline-block text-7xl font-bold md:text-6xl sm:text-5xl xs:text-3xl'>
                   <AnimatedNumber value={2} /> +
                 </span>
-                <h2 className='text-xl font-medium capitalize text-dark/75 dark:text-light/75 xl:text-center md:text-lg sm:text-base xl:text-sm'>
+                <h2 className='text-xl font-medium capitalize text-dark/75 dark:text-light/75 xl:text-center md:text-lg sm:text-base xl:text-sm '>
                   years of Experiences
                 </h2>
               </div>
