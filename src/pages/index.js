@@ -37,7 +37,7 @@ function Home() {
             </div>
             <div className='w-1/2 flex flex-col items-center self-center lg:w-full lg:text-center'>
               <AnimatedText
-                text='Turning Vision Into Reality With Code And Design.'
+                text='Bringing ideas to life with programming and design.'
                 className='xl:!text-5xl lg:!text-center lg:!text-4xl md:!text-3xl sm:!text-3xl'
               />
               <p className='my-4 text-base font-medium md:text-sm sm:text-xs text-justify'>
@@ -69,7 +69,7 @@ function Home() {
           </div>
         </Layout>
         <HireMe />
-        <div className='absolute right-8 bottom-8 inline-block w-24 md:hidden'>
+        <div className='absolute right-8 -bottom-8 inline-block w-24 md:hidden'>
           <Image
             src={lightBult}
             alt='lightbulb'

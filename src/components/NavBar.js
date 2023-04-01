@@ -6,7 +6,6 @@ import {
   TwitterIcon,
   GithubIcon,
   LinkedInIcon,
-  InstagramIcon,
   FacebookIcon,
   SunIcon,
   MoonIcon,
@@ -99,6 +98,15 @@ const NavBar = () => {
         </nav>
 
         <nav className='flex items-center justify-center flex-wrap '>
+        <motion.a
+            href='https://twitter.com/KshitijAdhikar3'
+            target={'_blank'}
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.9 }}
+            className='w-6 mr-6'
+          >
+            <LinkedInIcon />
+          </motion.a>
           <motion.a
             href='https://twitter.com/KshitijAdhikar3'
             target={'_blank'}
@@ -127,24 +135,8 @@ const NavBar = () => {
           >
             <FacebookIcon />
           </motion.a>
-          <motion.a
-            href='https://www.linkedin.com/in/kshitij-adhikaree-43771a1ab/'
-            target={'_blank'}
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.9 }}
-            className='w-6 mx-3'
-          >
-            <LinkedInIcon />
-          </motion.a>
-          <motion.a
-            href='https://www.instagram.com/kshitij_adhikaree/'
-            target={'_blank'}
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.9 }}
-            className='w-6 ml-3'
-          >
-            <InstagramIcon />
-          </motion.a>
+          
+          
 
           <button
             onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}
@@ -194,23 +186,24 @@ const NavBar = () => {
           </nav>
 
           <nav className='flex items-center justify-center '>
-            <motion.a
-              href='https://twitter.com/KshitijAdhikar3'
-              target={'_blank'}
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.9 }}
-              className='w-6 mr-3'
-            >
-              <TwitterIcon />
-            </motion.a>
+            
             <motion.a
               href='https://github.com/KshitijAdhikaree'
               target={'_blank'}
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}
-              className='w-6 mx-3 bg-light/80 rounded-full dark:bg-dark/80'
+              className='w-6 mr-3 bg-light/80 rounded-full dark:bg-dark/80'
             >
               <GithubIcon />
+            </motion.a>
+            <motion.a
+              href='https://twitter.com/KshitijAdhikar3'
+              target={'_blank'}
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.9 }}
+              className='w-6 mx-3'
+            >
+              <TwitterIcon />
             </motion.a>
             <motion.a
               href='https://www.linkedin.com/in/kshitij-adhikaree-43771a1ab/'
@@ -221,15 +214,7 @@ const NavBar = () => {
             >
               <LinkedInIcon />
             </motion.a>
-            <motion.a
-              href='https://www.instagram.com/kshitij_adhikaree/'
-              target={'_blank'}
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.9 }}
-              className='w-6 mx-3 bg-dark rounded-full'
-            >
-              <InstagramIcon />
-            </motion.a>
+            
             <motion.a
               href='https://www.facebook.com/adhikareekshitij'
               target={'_blank'}
