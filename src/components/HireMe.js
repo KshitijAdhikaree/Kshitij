@@ -16,7 +16,7 @@ const HireMe = () => {
         shadow-md border border-solid border-dark w-20 h-20 rounded-full font-semibold hover:bg-[#492c20] hover:text-light
         dark:border-light   dark:hover:bg-[#684536]/50 dark:hover:text-light md:w-12 md:h-12 md:text-[10px] '
         >
-          Book
+          Connect
         </Link>
       </div>
     </div>
