@@ -37,6 +37,7 @@ const FeaturedProject = ({ type, title, summary, img, link, github }) => {
           src={img}
           alt={title}
           className='w-full h-auto'
+          as='image'
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.2 }}
           priority
@@ -98,6 +99,7 @@ const Project = ({ title, type, img, link, github }) => {
         <FramerImage
           src={img}
           alt={title}
+          as='image'
           className='w-full h-auto'
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.2 }}

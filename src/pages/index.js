@@ -1,12 +1,12 @@
 import Head from 'next/head'
 import Layout from '@/components/Layout'
 import Image from 'next/image'
-import profilePic from '../../public/images/profile/developer-pic-3.png'
+import profilePic from '../../public/images/profile/profile.png'
 import AnimatedText from '@/components/AnimatedText'
 import Link from 'next/link'
 import { LinkArrow } from '@/components/Icons'
 import HireMe from '@/components/HireMe'
-import lightBult from '../../public/images/svgs/miscellaneous_icons_1.svg'
+import lightBult from '../../public/images/approved.png'
 import TransitionEffect from '@/components/TransitionEffect'
 
 function Home() {
@@ -21,19 +21,16 @@ function Home() {
       <main className='flex items-center text-dark w-full min-h-screen dark:text-light'>
         <Layout className='pt-0 md:p-16 sm:pt-2'>
           <div className='flex items-center justify-between w-full lg:flex-col'>
-            <div className='w-1/2 h-full lg:w-full md:w-full'>
+            <div className='w-1/2 lg:w-full md:w-full'>
               <Image
                 src={profilePic}
                 alt='profilePic'
-                className='w-full h-auto lg:inline-block md:inline-block md:w-full '
-                priority
-                as='image'
-                width='300'
-                height='200'
-                sizes='(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              50vw'
-              ></Image>
+                width={250}
+                height={200}
+                priority={true}
+                sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw'
+                className='ml-32 lg:inline-block md:inline-block md:w-[14rem] '
+              />
             </div>
             <div className='w-1/2 flex flex-col items-center self-center lg:w-full lg:text-center'>
               <AnimatedText
@@ -69,13 +66,13 @@ function Home() {
           </div>
         </Layout>
         <HireMe />
-        <div className='absolute right-8 -bottom-8 inline-block w-24 md:hidden'>
+        <div className='absolute right-8 -bottom-8 inline-block w-30 md:hidden'>
           <Image
             src={lightBult}
             alt='lightbulb'
-            width='300'
+            width='140'
             height='200'
-            className='w-full h-auto'
+            className='w-full h-auto '
           />
         </div>
       </main>

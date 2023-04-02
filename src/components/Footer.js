@@ -29,6 +29,7 @@ const Footer = () => {
           <Image
             src={buyMeACoffee}
             alt='Buy Me A Coffee'
+            as='image'
             width={300}
             height={200}
           />

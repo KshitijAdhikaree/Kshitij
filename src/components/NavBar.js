@@ -42,6 +42,7 @@ const CustomMobileLink = ({ href, title, className = '', toggle }) => {
     <button
       href={href}
       className={`${className} relative group text-light dark:text-dark my-2`}
+      aria-label='lightDarkMode'
       onClick={handleClick}
     >
       {title}
@@ -69,6 +70,7 @@ const NavBar = () => {
     <header className='w-full px-32 py-8 font-medium flex items-center justify-between dark:text-light relative z-10 lg:px-16 md:px-12 sm:px-8'>
       <button
         className=' flex-col justify-center items-center hidden lg:flex'
+        aria-label='onClick'
         onClick={handleClick}
       >
         <span
@@ -98,7 +100,7 @@ const NavBar = () => {
         </nav>
 
         <nav className='flex items-center justify-center flex-wrap '>
-        <motion.a
+          <motion.a
             href='https://twitter.com/KshitijAdhikar3'
             target={'_blank'}
             whileHover={{ y: -2 }}
@@ -135,13 +137,12 @@ const NavBar = () => {
           >
             <FacebookIcon />
           </motion.a>
-          
-          
 
           <button
             onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}
             className={`ml-16 flex items-center justify-center rounded-full p-2 
           ${mode === 'light' ? 'bg-dark text-light' : 'bg-light text-dark'}`}
+            aria-label='lightDark'
           >
             {mode === 'dark' ? (
               <SunIcon className={'fill-dark'} />
@@ -186,7 +187,6 @@ const NavBar = () => {
           </nav>
 
           <nav className='flex items-center justify-center '>
-            
             <motion.a
               href='https://github.com/KshitijAdhikaree'
               target={'_blank'}
@@ -214,7 +214,7 @@ const NavBar = () => {
             >
               <LinkedInIcon />
             </motion.a>
-            
+
             <motion.a
               href='https://www.facebook.com/adhikareekshitij'
               target={'_blank'}
@@ -229,6 +229,7 @@ const NavBar = () => {
             onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}
             className={` mt-8 flex items-center justify-center rounded-full p-2 
           ${mode === 'light' ? 'bg-dark text-light' : 'bg-light text-dark'}`}
+            aria-label='lightDarkMobile'
           >
             {mode === 'dark' ? (
               <SunIcon className={'fill-dark'} />

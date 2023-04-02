@@ -85,6 +85,7 @@ const about = () => {
                 src={profilePic}
                 alt='aboutProfilePic'
                 className='w-full h-auto rounded-2xl '
+                as='image'
                 priority
                 sizes='(max-width: 768px) 100vw,
               (max-width: 1200px) 50vw,

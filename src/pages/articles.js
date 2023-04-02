@@ -46,6 +46,7 @@ const MovingImage = ({ title, img, link }) => {
         style={{ x: x, y: y }}
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1, transition: { duration: 0.3 } }}
+        as='image'
         ref={imgRef}
         src={img}
         alt={title}
@@ -68,7 +69,7 @@ const Article = ({ img, title, date, link }) => {
       className='realtive w-full p-4 py-6 my-4 rounded-xl flex items-center justify-between bg-light text-dark first:mt-0 border border-solid border-dark
     border-r-4 border-b-4 dark:bg-dark dark:text-light dark:border-light sm:flex-col '
     >
-      <MovingImage title={title} img={img} link={link} />
+      <MovingImage title={title} img={img} link={link} as='image' />
       <span className='text-primary font-semibold pl-4 dark:text-primaryDark sm:self-start sm:pl-0 xs:text-sm'>
         {date}
       </span>
@@ -88,7 +89,8 @@ const FeaturedArticle = ({ img, title, time, summary, link }) => {
         <FramerImage
           src={img}
           alt={title}
-          className='w-full h-auto'
+          className='w-auto h-full'
+          as='image'
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.2 }}
           priority
@@ -118,7 +120,7 @@ const articles = () => {
       </Head>
       <TransitionEffect />
       <main className='w-full mb-16 flex flex-col items-center justify-center overflow-hidden dark:text-light'>
-        <Layout className='mt-16'>
+        <Layout className='-mt-10'>
           <AnimatedText
             text='Words can change the world'
             className='mb-16 lg:!text-7xl sm:mb-8 sm:!text-6xl xs:!text-4xl'
