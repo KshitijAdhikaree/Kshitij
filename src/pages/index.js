@@ -29,7 +29,7 @@ function Home() {
                 height={200}
                 priority={true}
                 sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw'
-                className='ml-32 lg:inline-block md:inline-block md:w-[14rem] '
+                className='ml-32 lg:inline-block md:inline-block md:w-[14rem] sm:w-[12rem] sm:mx-20 sm:mt-4'
               />
             </div>
             <div className='w-1/2 flex flex-col items-center self-center lg:w-full lg:text-center'>
@@ -65,7 +65,7 @@ function Home() {
             </div>
           </div>
         </Layout>
-        <HireMe />
+        <HireMe/>
         <div className='absolute right-8 -bottom-8 inline-block w-30 md:hidden'>
           <Image
             src={lightBult}
