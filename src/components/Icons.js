@@ -501,9 +501,9 @@ export const Circle = ({ className }) => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     width='768'
-    height='793.333'
+    height='793.33'
     version='1'
-    viewBox='0 0 576 595'
+    viewBox='0 0 579 595'
     xmlSpace='preserve'
     className={`w-full h-auto ${className}`}
   >
