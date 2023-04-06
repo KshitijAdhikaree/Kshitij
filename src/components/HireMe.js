@@ -9,9 +9,9 @@ const HireMe = () => {
         <Circle className='fill-dark  dark:fill-light scale-75 animate-pulse ' />
         <Link
           href='mailto:adhikareekshitij@gmail.com'
-          className='flex items-center justify-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-transparent text-dark dark:text-light
-          shadow-md w-20 h-20 rounded-full font-semibold  hover:bg-dark hover:text-light
-             dark:hover:bg-light dark:hover:text-dark md:w-12 md:h-12 md:text-[10px]'
+          className='flex items-center justify-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-dark text-light dark:text-dark dark:bg-light
+         w-20 h-20 rounded-full font-semibold  hover:bg-light hover:text-dark
+         dark:hover:bg-dark dark:hover:text-light md:w-12 md:h-12 md:text-[10px]'
         >
           Connect
         </Link>
