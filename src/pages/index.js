@@ -6,7 +6,7 @@ import AnimatedText from '@/components/AnimatedText'
 import Link from 'next/link'
 import { LinkArrow } from '@/components/Icons'
 import HireMe from '@/components/HireMe'
-import lightBult from '../../public/images/approved.png'
+import color from '../../public/images/color.gif'
 import TransitionEffect from '@/components/TransitionEffect'
 
 function Home() {
@@ -66,13 +66,13 @@ function Home() {
           </div>
         </Layout>
         <HireMe/>
-        <div className='absolute right-8 -bottom-8 inline-block w-30 md:hidden'>
+        <div className='absolute right-10 -bottom-16 inline-block w-30 md:hidden'>
           <Image
-            src={lightBult}
+            src={color}
             alt='lightbulb'
             width='140'
-            height='200'
-            className='w-full h-auto '
+            height='140'
+            className='w-[220px] h-auto '
           />
         </div>
       </main>
