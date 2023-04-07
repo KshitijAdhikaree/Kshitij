@@ -48,16 +48,6 @@ const Education = () => {
         />
         <ul className='w-full flex flex-col items-center justify-between ml-4'>
           <Details
-            type='MERN Stack Web Development Course'
-            time='2023-2023'
-            place='Tinkune, Kathmandu'
-            info='As a web developer, my work involves designing and developing websites and web applications. 
-            This includes writing code in languages such as HTML, CSS, and JavaScript, as well as utilizing frameworks and libraries such as React, Express and NodeJS. 
-            I also collaborate with designers, project managers, and other developers to ensure that the final product meets the clients needs and specifications. 
-            Additionally, I test the website or application for functionality and troubleshoot any issues that arise. 
-            In an ever-evolving field, its important for me to stay up-to-date with the latest technologies and trends to deliver high-quality products to clients.'
-          />
-          <Details
             type='Bachelors'
             time='2016-2022'
             place='Balkumari, Kathmandu'

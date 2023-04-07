@@ -45,8 +45,7 @@ const Skills = () => {
         <Skill name='NextJS' x='31vw' y='-5vw' />
         <Skill name='Figma' x='-20vw' y='14vw' />
         <Skill name='Tailwind CSS' x='22vw' y='18vw' />
-        <Skill name='Tailwind CSS' x='2vw' y='-18vw' />
-
+        <Skill name='React' x='2vw' y='-18vw' />
       </div>
     </>
   )

@@ -55,33 +55,46 @@ const Experience = () => {
         />
         <ul className='w-full flex flex-col items-center justify-between ml-4 xs:ml-2'>
           <Details
-            position='Web Developer'
+            position='Web Development'
             company='Broadway Infosys.'
             target='_blank'
-            companyLink='https://www.google.com/'
-            time='2022-Present'
+            companyLink='https://broadwayinfosys.com/'
+            time='2022-2023'
             address='Tinkune, Kathmandu'
             work='As a web developer, I design and develop websites and web applications, write code in languages such as HTML, CSS, and JavaScript,
              collaborate with team members, test for functionality and troubleshoot issues, and stay up-to-date with the latest technologies to deliver
               high-quality products to clients.'
           />
           <Details
-            position='Content Writer'
-            company='Entegra Sources'
-            companyLink='https://www.google.com/'
+            position='Computer Operator'
+            company='Helen Keller International'
+            target='_blank'
+            companyLink='https://helenkellerintl.org/'
             time='2022-2022'
-            address='Mountain View, CA'
-            work='As a content writer, I create written content for various mediums, conduct research, develop ideas, collaborate with designers, and revise and proofread content. 
-            I stay up-to-date with trends and best practices to deliver engaging, informative, and optimized copy.'
+            address='Pulchowk, Kathmandu'
+            work='As a Computer Operator at Helen Keller Intl, I provided technical support, troubleshooted hardware and software issues, and ensured data security
+            . I collaborated with departments to identify technical needs and lead training sessions. I was committed to staying up to date with industry
+             trends and providing excellent customer service.'
           />
           <Details
-            position='Computer engineer'
-            company='DoHS'
-            companyLink='https://www.google.com/'
+            position='Logistics Assistant'
+            company='Department of Health Services (DoHS)'
+            companyLink='https://dohs.gov.np/'
             time='2021-2022'
             address='Teku, Kathmandu'
-            work='As a computer engineer, I design and develop hardware and software systems, write code in languages such as C++, Python, and Java, and collaborate with other engineers to ensure system performance and functionality.
-             I also test and troubleshoot systems to ensure they meet design specifications.'
+            work='Provide administrative support in a logistics unit. Compiling reports, assisting with creating
+            presentations with co-workers, and organizing and maintaining records. Supervise incoming
+            shipment to ensure that they are intact and accurate. Supervise and partake in loading/unloading
+            trucks when shipments are received or going out.'
+          />
+          <Details
+            position='Content Writer'
+            company='Entegra Sources'
+            companyLink='https://entegrasources.com/'
+            time='2021-2021'
+            address='New Baneshower, Kathmandu'
+            work='As a content writer, I create written content for various mediums, conduct research, develop ideas, collaborate with designers, and revise and proofread content. 
+            I stay up-to-date with trends and best practices to deliver engaging, informative, and optimized copy.'
           />
         </ul>
       </div>
