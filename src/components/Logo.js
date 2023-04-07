@@ -6,8 +6,8 @@ const Logo = () => {
     <div className='flex items-center mt-2 lg:self-center '>
       <Link
         href='/'
-        className='w-16 h-16 bg-dark text-light flex items-center justify-center border-solid rounded-2xl hover:bg-light/75
-        border-[2px] hover:border-dark  text-2xl font-bold dark:border-light dark:hover:bg-light/75 hover:text-dark/75 
+        className='w-16 h-16 bg-dark text-light flex items-center justify-center border-solid rounded-2xl hover:bg-light
+        border-[2px] hover:border-dark  text-2xl font-bold dark:border-light dark:hover:bg-light hover:text-dark
         md:text-xl '
       >
         K.A

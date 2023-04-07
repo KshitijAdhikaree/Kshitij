@@ -73,6 +73,7 @@ function Home() {
             width='140'
             height='140'
             className='w-[220px] h-auto '
+            
           />
         </div>
       </main>
