@@ -12,7 +12,7 @@ function Home() {
   return (
     <>
       <Head>
-        <title>Kshitj | Home </title>
+        <title>Kshitij | Home </title>
         <meta name='description' content='description' />
       </Head>
       <TransitionEffect />
@@ -25,16 +25,17 @@ function Home() {
                 className='w-[420px] h-[490px] bg-primaryDark dark:bg-primary border-[12px] border-dark transition-[border-radius] duration-[0.5s] ease-[cubic-bezier(0.175,0.885,0.32,1.275)] rounded-[10px] 
               shadow-[inset_0_-3em_3em_rgba(0,0,0,0.1),0_0_0_2px_rgb(190,190,190),0.3em_0.3em_1em_rgba(0,0,0,0.3)]
               dark:shadow-[inset_0_-3em_3em_rgba(255,255,255,0.1),0_0_0_2px_rgb(53,53,53),0.3em_0.3em_1em_rgba(255,255,255,0.3)]
-              mt-24 md:w-[20rem] md:h-[341px] md:mt-16 md:ml-[72px] sm:ml-20 xs:ml-8 lg:ml-[160px] sm:mt-32 mb-4 dark:border-light xs:w-[14rem] xs:h-[14rem] '
+              mt-24 md:w-[20rem] md:h-[341px] md:mt-16 md:ml-[72px] sm:ml-20 xs:ml-8 lg:ml-[160px] sm:mt-32 mb-4 dark:border-light xs:w-[14rem] xs:h-[14rem]
+              '
               >
                 <Image
                   src={profilePic}
                   alt='profilePic'
                   width={400}
-                  height='auto'
+                  height={400}
                   priority={true}
                   sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw'
-                  className='-mt-32 lg:inline-block md:inline-block md:w-[24rem] sm:w-[20rem] xs:w-[14rem] xs:-mt-[100px] '
+                  className='-mt-32 lg:inline-block md:inline-block md:w-[24rem] sm:w-[20rem] xs:w-[14rem] xs:-mt-[100px]'
                 />
               </div>
             </div>
