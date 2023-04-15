@@ -43,7 +43,7 @@ function Home() {
                 text='Bringing ideas to life with programming and design.'
                 className='xl:!text-5xl lg:!text-center lg:!text-4xl md:!text-3xl sm:!text-3xl justify-center'
               />
-              <p className='my-4 text-base font-medium md:text-sm sm:text-xs text-justify'>
+              <p className='my-4 text-base font-medium md:text-sm sm:text-xs text-justify xs:text-base '>
                 As a skilled full-stack developer, I am dedicated to turning
                 ideas into innovative web applications. Explore my latest
                 projects and articles, showcasing my expertise in web design and
