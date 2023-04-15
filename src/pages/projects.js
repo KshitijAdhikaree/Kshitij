@@ -189,8 +189,8 @@ const projects = () => {
                 title='E-shop'
                 img={eShop}
                 summary='A ecommerce website that uses crud operation with dashboard and payment method.'
-                link='/'
-                github='/'
+                link='https://github.com/KshitijAdhikaree/mernEcommerce'
+                github='https://github.com/KshitijAdhikaree/mernEcommerce'
                 type='E-commerce Website'
               />
             </div>
