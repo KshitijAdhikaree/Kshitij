@@ -1,105 +1,108 @@
-import { useScroll, motion } from 'framer-motion'
-import React, { useRef } from 'react'
-import LiIcon from './LiIcon'
+import { useScroll, motion } from "framer-motion";
+import React, { useRef } from "react";
+import LiIcon from "./LiIcon";
 
 const Details = ({ position, company, companyLink, time, address, work }) => {
-  const ref = useRef(null)
+  const ref = useRef(null);
   return (
     <li
       ref={ref}
-      className='my-8 first:mt-0 last:mb-0 w-[60%] mx-auto flex flex-col items-center justify-between md:w-[80%] '
+      className="my-8 first:mt-0 last:mb-0 w-[60%] mx-auto flex flex-col items-center justify-between md:w-[80%] "
     >
       <LiIcon reference={ref} />
       <motion.div
         initial={{ y: 50 }}
         whileInView={{ y: 0 }}
-        transition={{ duration: 1, type: 'spring' }}
+        transition={{ duration: 1, type: "spring" }}
       >
-        <h3 className='capitalize font-bold text-2xl sm:text-xl xs:text-lg'>
-          {position}&nbsp;{' '}
+        <h3 className="capitalize font-bold text-2xl sm:text-xl xs:text-lg">
+          {position}&nbsp;{" "}
           <a
             href={companyLink}
-            target='_blank'
-            className='text-primary capitalize dark:text-primaryDark'
+            target="_blank"
+            className="text-primary capitalize dark:text-primaryDark"
           >
             @{company}
           </a>
         </h3>
-        <span className='capitalize font-medium text-dark/75 dark:text-light/75 xs:text-sm'>
+        <span className="capitalize font-medium text-dark/75 dark:text-light/75 xs:text-sm">
           {time} | {address}
         </span>
-        <p className='font-medium w-full md:text-sm text-justify'>{work}</p>
+        <p className="font-medium w-full md:text-sm text-justify">{work}</p>
       </motion.div>
     </li>
-  )
-}
+  );
+};
 
 const Experience = () => {
-  const ref = useRef(null)
+  const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start end', 'center start'],
+    offset: ["start end", "center start"],
     layoutEffect: false,
-  })
+  });
   return (
-    <div className='my-64'>
-      <h2 className='font-bold text-8xl mb-32 w-full text-center md:text-6xl xs:text-4xl md:mb-6'>
+    <div className="my-64">
+      <h2 className="font-bold text-8xl mb-32 w-full text-center md:text-6xl xs:text-4xl md:mb-6">
         Experience
       </h2>
 
-      <div ref={ref} className='w-[75%] mx-auto relative lg:w-[90%] md:w-full'>
+      <div ref={ref} className="w-[75%] mx-auto relative lg:w-[90%] md:w-full">
         <motion.div
           style={{ scaleY: scrollYProgress }}
-          className='absolute left-14 top-0 w-[4px] h-full bg-dark origin-top dark:bg-light
-          md:w-[2px] md:left-[45px] xs:left-[26px] '
+          className="absolute left-14 top-0 w-[4px] h-full bg-dark origin-top dark:bg-light
+          md:w-[2px] md:left-[45px] xs:left-[26px] "
         />
-        <ul className='w-full flex flex-col items-center justify-between ml-4 xs:ml-2'>
+        <ul className="w-full flex flex-col items-center justify-between ml-4 xs:ml-2">
           <Details
-            position='Web Development'
-            company='Broadway Infosys.'
-            target='_blank'
-            companyLink='https://broadwayinfosys.com/'
-            time='2022-2023'
-            address='Tinkune, Kathmandu'
-            work='As a web developer, I design and develop websites and web applications, write code in languages such as HTML, CSS, and JavaScript,
-             collaborate with team members, test for functionality and troubleshoot issues, and stay up-to-date with the latest technologies to deliver
-              high-quality products to clients.'
+            position="Freelancer Web Designer"
+            company="Upwork and Fiverr"
+            target="_blank"
+            companyLink="https://www.upwork.com"
+            time="2024 - Present"
+            address="Remote"
+            work="As a Freelancer Web Designer on Upwork and Fiverr, I have designed and developed custom websites for clients across various industries. I collaborate directly with clients to understand their needs, provide creative solutions, and deliver user-friendly, responsive websites. I use technologies such as HTML, CSS, JavaScript, and BootStrap to create visually appealing and functional designs, ensuring client satisfaction and repeat business."
           />
           <Details
-            position='Computer Operator'
-            company='Helen Keller International'
-            target='_blank'
-            companyLink='https://helenkellerintl.org/'
-            time='2022-2022'
-            address='Pulchowk, Kathmandu'
-            work='As a Computer Operator at Helen Keller Intl, I provided technical support, troubleshooted hardware and software issues, and ensured data security
-            . I collaborated with departments to identify technical needs and lead training sessions. I was committed to staying up to date with industry
-             trends and providing excellent customer service.'
+            position="Mid-Level Software Engineer"
+            company="Debugsoft Pvt. Ltd."
+            target="_blank"
+            companyLink="https://debugsoft.com"
+            time="June 2024 - Sep 2024"
+            address="Kupandole, Kathmandu, Nepal"
+            work="As a Mid-Level Software Engineer at Debugsoft Pvt. Ltd., I was responsible for designing, developing, and maintaining software solutions. I contributed to full-stack web development projects using technologies like ASP.NET, JavaScript (React, Node.js), and SQL Server. I worked closely with senior engineers to implement scalable solutions, and provided support to junior team members in troubleshooting and optimizing applications."
           />
           <Details
-            position='Logistics Assistant'
-            company='Department of Health Services (DoHS)'
-            companyLink='https://dohs.gov.np/'
-            time='2021-2022'
-            address='Teku, Kathmandu'
-            work='Provide administrative support in a logistics unit. Compiling reports, assisting with creating
-            presentations with co-workers, and organizing and maintaining records. Supervise incoming
-            shipment to ensure that they are intact and accurate. Supervise and partake in loading/unloading
-            trucks when shipments are received or going out.'
+            position="Junior Software Engineer"
+            company="Debugsoft Pvt. Ltd."
+            target="_blank"
+            companyLink="https://debugsoft.com"
+            time="Jan 2024 - June 2024"
+            address="Kupandole, Kathmandu, Nepal"
+            work="As a Junior Software Engineer, I mentor and guide new interns, helping them understand company processes and technologies. I assist senior engineers by troubleshooting issues and contributing to the development and maintenance of software solutions. I leverage my expertise in ASP.NET, React, Node.js, SQL Server, and Git to provide technical support and contribute to innovative projects."
           />
           <Details
-            position='Content Writer'
-            company='Entegra Sources'
-            companyLink='https://entegrasources.com/'
-            time='2021-2021'
-            address='New Baneshower, Kathmandu'
-            work='As a content writer, I create written content for various mediums, conduct research, develop ideas, collaborate with designers, and revise and proofread content. 
-            I stay up-to-date with trends and best practices to deliver engaging, informative, and optimized copy.'
+            position="Associate Software Engineer"
+            company="Debugsoft Pvt. Ltd."
+            target="_blank"
+            companyLink="https://debugsoft.com"
+            time="Sept 2023 - Jan 2024"
+            address="Kupandole, Kathmandu, Nepal"
+            work="As an Associate Software Engineer, I performed code reviews and provided constructive feedback to peers to ensure high-quality code. I helped develop a payment processing platform, improving transaction speed by 15%. I also contributed to technical discussions to ensure project goals were aligned with technical standards."
+          />
+          <Details
+            position="Intern Software Engineer"
+            company="Debugsoft Pvt. Ltd."
+            target="_blank"
+            companyLink="https://debugsoft.com"
+            time="June 2023 - Sept 2023"
+            address="Kupandole, Kathmandu, Nepal"
+            work="During my internship, I worked on iterating the platform for member management, collaborating with a team of engineers to develop new features. I also tested the software for bugs and optimized performance, increasing efficiency through bug fixes and process documentation."
           />
         </ul>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Experience
+export default Experience;

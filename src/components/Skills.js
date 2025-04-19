@@ -1,54 +1,121 @@
-import { motion } from 'framer-motion'
-import React from 'react'
+import React from "react";
+import { motion } from "framer-motion";
+import {
+  SiHtml5,
+  SiCss3,
+  SiJavascript,
+  SiNodedotjs,
+  SiMongodb,
+  SiExpress,
+  SiNextdotjs,
+  SiFigma,
+  SiTailwindcss,
+  SiReact,
+  SiDotnet,
+  SiPostgresql,
+  SiMysql,
+  SiRedux,
+  SiTypescript,
+  SiBootstrap,
+  SiFirebase,
+  SiGraphql,
+  SiJquery,
+  SiGit,
+  SiGithub,
+  SiPython,
+  SiCplusplus,
+  SiDocker,
+  SiLinux,
+} from "react-icons/si";
 
-const Skill = ({ name, x, y }) => {
+const Skill = ({ icon: Icon, x, y }) => {
   return (
     <motion.div
-      className='flex items-center justify-center rounded-full font-semibold bg-dark text-light px-6 py-3 shadow-dark cursor-pointer absolute
-      dark:bg-light dark:text-dark dark:shadow-light dark:border dark:border-light lg:py-2 lg:px-4 md:text-sm md:px-3 xs:bg-transparent xs:dark:bg-transparent xs:dark:border-hidden
-      xs:text-dark xs:dark:text-light xs:font-bold'
-      whileHover={{ scale: 1.05 }}
+      className="flex items-center justify-center rounded-full bg-dark text-light p-4 shadow-dark cursor-pointer absolute
+      dark:bg-light dark:text-dark dark:shadow-light border border-light dark:border-dark lg:p-3 md:p-2 xs:p-1 text-3xl md:text-2xl sm:text-xl"
+      whileHover={{ scale: 1.2 }}
       initial={{ x: 0, y: 0 }}
       whileInView={{ x: x, y: y, transition: { duration: 1.5 } }}
       viewport={{ once: true }}
     >
-      {name}
+      <Icon />
     </motion.div>
-  )
-}
+  );
+};
+
 const Skills = () => {
+  // Split skills into 3 levels
+  const levels = [
+    {
+      icons: [SiHtml5, SiCss3, SiJavascript, SiReact, SiTailwindcss, SiFigma],
+      radiusX: 12,
+      radiusY: 6,
+    },
+    {
+      icons: [
+        SiNodedotjs,
+        SiMongodb,
+        SiExpress,
+        SiMysql,
+        SiDotnet,
+        SiPostgresql,
+      ],
+      radiusX: 20,
+      radiusY: 10,
+    },
+    {
+      icons: [
+        SiNextdotjs,
+        SiRedux,
+        SiTypescript,
+        SiBootstrap,
+        SiFirebase,
+        SiGraphql,
+        SiJquery,
+        SiGit,
+        SiGithub,
+        SiPython,
+        SiCplusplus,
+        SiDocker,
+        SiLinux,
+      ],
+      radiusX: 30,
+      radiusY: 16,
+    },
+  ];
+
   return (
     <>
-      <h2 className='font-bold text-8xl mt-64 w-full text-center md:text-6xl md:mt-32'>
+      <h2 className="font-bold text-8xl mt-64 w-full text-center md:text-6xl md:mt-32">
         Skills
       </h2>
       <div
-        className='w-full h-screen relative flex items-center justify-center rounded-full bg-circularLight dark:bg-circularDark
+        className="w-full h-screen relative flex items-center justify-center rounded-full bg-circularLight dark:bg-circularDark
       lg:h-[80vh] sm:h-[60vh] xs:h-[50vh] 
       lg:bg-circularLightLg lg:dark:bg-circularDarkLg
       md:bg-circularLightMd md:dark:bg-circularDarkMd
-      sm:bg-circularLightSm sm:dark:bg-circularDarkSm'
+      sm:bg-circularLightSm sm:dark:bg-circularDarkSm"
       >
         <motion.div
-          className='flex items-center justify-center rounded-full font-semibold bg-dark text-light p-8 shadow-dark cursor-pointer
-          dark:bg-light dark:text-dark lg:p-6 md:p-4 xs:text-xs xs:p-2  '
-          whileHover={{ scale: 1.05 }}
+          className="flex items-center justify-center rounded-full bg-dark text-light p-8 shadow-dark cursor-pointer
+          dark:bg-light dark:text-dark lg:p-6 md:p-4 xs:p-2 text-4xl"
+          whileHover={{ scale: 1.2 }}
         >
-          Web
+          💻
         </motion.div>
-        <Skill name='HTML' x='-19vw' y='2vw' />
-        <Skill name='CSS' x='-5vw' y='-10vw' />
-        <Skill name='JavaScript' x='23vw' y='6vw' />
-        <Skill name='NodeJS' x='-0vw' y='11vw' />
-        <Skill name='MongoDB' x='-19vw' y='-15vw' />
-        <Skill name='Express' x='15vw' y='-12vw' />
-        <Skill name='NextJS' x='31vw' y='-5vw' />
-        <Skill name='Figma' x='-20vw' y='14vw' />
-        <Skill name='Tailwind CSS' x='22vw' y='18vw' />
-        <Skill name='React' x='2vw' y='-18vw' />
+
+        {levels.map((level, idx) =>
+          level.icons.map((Icon, i) => {
+            const angle = (360 / level.icons.length) * i;
+            const rad = (angle * Math.PI) / 180;
+            const x = `${Math.round(Math.cos(rad) * level.radiusX)}vw`;
+            const y = `${Math.round(Math.sin(rad) * level.radiusY)}vw`;
+            return <Skill key={`${idx}-${i}`} icon={Icon} x={x} y={y} />;
+          })
+        )}
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Skills
+export default Skills;
