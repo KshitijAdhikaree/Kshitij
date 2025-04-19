@@ -3,7 +3,7 @@ import Head from "next/head";
 import AnimatedText from "@/components/AnimatedText";
 import Layout from "@/components/Layout";
 import Image from "next/image";
-import profilePic from "../../public/images/profile/developer-pic-2.jpg";
+import profilePic from "../../public/images/profile/developer-pic-1.png";
 import { useInView, useMotionValue, useSpring } from "framer-motion";
 import Skills from "@/components/Skills";
 import Experience from "@/components/Experience";
