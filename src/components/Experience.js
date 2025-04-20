@@ -55,7 +55,7 @@ const Experience = () => {
         />
         <ul className="w-full flex flex-col items-center justify-between ml-4 xs:ml-2">
           <Details
-            position="Freelancer Web Designer"
+            position="FullStack Web Developer"
             company="Upwork and Fiverr"
             target="_blank"
             companyLink="https://www.upwork.com"
