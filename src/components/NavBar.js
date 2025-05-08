@@ -112,7 +112,7 @@ const NavBar = () => {
           </motion.a>
 
           <motion.a
-            href="https://www.facebook.com/adhikareekshitij"
+            href="https://www.facebook.com/kshitizadhikaree"
             target={"_blank"}
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.9 }}
@@ -236,7 +236,7 @@ const NavBar = () => {
             </motion.a>
 
             <motion.a
-              href="https://www.facebook.com/adhikareekshitij"
+              href="https://www.facebook.com/kshitizadhikaree"
               target={"_blank"}
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.9 }}
