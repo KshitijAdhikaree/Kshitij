@@ -518,10 +518,10 @@ export const FacebookIcon = ({ className, ...rest }) => (
 export const Circle = ({ className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="768"
-    height="793.33"
-    version="1"
-    viewBox="0 0 579 595"
+    // width="768"
+    // height="768"
+    // version="1"
+    viewBox="0 0 600 600"
     xmlSpace="preserve"
     className={`w-full h-auto ${className}`}
   >
