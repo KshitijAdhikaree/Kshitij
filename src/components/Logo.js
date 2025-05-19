@@ -3,13 +3,10 @@ import React from "react";
 
 const Logo = () => {
   return (
-    <div
-      className=" w-16 h-16 flex items-center justify-center rounded-2xl bg-[length:200%_100%] animate-gradient-bg transition-transform duration-100 hover:scale-105 hover:shadow-lg
-      "
-    >
+    <div className="w-16 h-16 my-2 flex items-center justify-center rounded-2xl bg-gradient-logo bg-400 animate-bganimation transition-transform duration-300 hover:scale-110 shadow-dark dark:shadow-light">
       <Link
         href="/"
-        className="text-3xl font-bold animate-text-color transition-colors duration-300 hover:text-light dark:hover:text-dark"
+        className="text-light dark:text-dark text-3xl font-bold dark:hover:text-light hover:text-dark"
       >
         KA
       </Link>
