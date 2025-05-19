@@ -1,19 +1,20 @@
-import Link from 'next/link'
-import React from 'react'
+import Link from "next/link";
+import React from "react";
 
 const Logo = () => {
   return (
-    <div className='flex items-center mt-2 lg:self-center '>
+    <div
+      className="
+        w-16 h-16 flex items-center justify-center rounded-2xl border-2 bg-[length:200%_100%] animate-gradient-bg"
+    >
       <Link
-        href='/'
-        className='w-16 h-16 bg-dark text-light flex items-center justify-center border-solid rounded-2xl hover:bg-light
-        border-[2px] hover:border-dark  text-2xl font-bold dark:border-light dark:hover:bg-light hover:text-dark
-        md:text-xl '
+        href="/"
+        className="text-3xl font-bold animate-text-color transition-transform duration-100"
       >
-        K.A
+        KA
       </Link>
     </div>
-  )
-}
+  );
+};
 
-export default Logo
+export default Logo;
