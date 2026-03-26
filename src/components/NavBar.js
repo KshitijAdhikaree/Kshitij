@@ -21,7 +21,7 @@ const CustomLink = ({ href, title, className = "" }) => {
     <Link href={href} className={`${className} relative group`}>
       {title}
       <span
-        className={`h-[1px] inline-block bg-dark absolute left-0 -bottom-0.5 group-hover:w-full transition-[width] ease duration-300 ${
+        className={`h-[2px] inline-block bg-dark absolute left-0 -bottom-0.5 group-hover:w-full transition-[width] ease duration-300 ${
           router.asPath === href ? "w-full" : "w-0"
         } dark:bg-light`}
       >
@@ -68,7 +68,7 @@ const NavBar = () => {
   };
 
   return (
-    <header className="w-full px-32 py-8 font-medium flex items-center justify-between dark:text-light bg-light/90 dark:bg-dark/90 backdrop-blur-md fixed top-0 left-0 z-50 lg:px-16 md:px-12 sm:px-8">
+    <header className="w-full px-32 py-6 font-medium flex items-center justify-between dark:text-light bg-light/90 dark:bg-dark/90 backdrop-blur-md fixed top-0 left-0 z-10 lg:px-16 lg:py-6 md:px-12 md:py-6 sm:px-8 sm:py-6">
       <button
         className=" flex-col justify-center items-center hidden lg:flex"
         aria-label="onClick"
@@ -166,9 +166,9 @@ const NavBar = () => {
       {/* Mobile */}
       {isOpen ? (
         <motion.div
-          initial={{ scale: 0, opacity: 0, x: "-50%", y: "-50%" }}
+          initial={{ scale: 0, opacity: 0, x: "-50%", y: "50%" }}
           animate={{ scale: 1, opacity: 1 }}
-          className="fixed min-w-[70vw] flex flex-col justify-between z-30 items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-dark/75 dark:bg-light/75 rounded-lg backdrop-blur-md py-[60px]"
+          className="fixed min-w-[70vw] flex flex-col justify-between z-30 items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-dark/80 dark:bg-light/80 rounded-lg backdrop-blur-md py-[60px]"
         >
           <nav className="flex items-center flex-col justify-center ">
             <CustomMobileLink
@@ -260,7 +260,7 @@ const NavBar = () => {
         </motion.div>
       ) : null}
 
-      <div className="absolute left-[47%] top-2 traslate-x-[-50%] md:left-[43%]">
+      <div className="absolute left-[50%] traslate-x-[-50%] md:left-[48%]">
         <Logo />
       </div>
     </header>

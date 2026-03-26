@@ -8,7 +8,7 @@ const generateRandomColor = () => {
     "#" +
     Array.from(
       { length: 6 },
-      () => letters[Math.floor(Math.random() * 16)]
+      () => letters[Math.floor(Math.random() * 16)],
     ).join("")
   );
 };
@@ -20,11 +20,11 @@ const HireMe = () => {
 
   const randomColors = useMemo(
     () => Array.from({ length: circleCount }, () => generateRandomColor()),
-    []
+    [],
   );
 
   return (
-    <div className="fixed left-4 bottom-4 md:right-8 md:left-auto md:top-0 md:bottom-auto md:absolute sm:hidden">
+    <div className="fixed left-4 bottom-4 md:right-8 md:left-auto md:top-0 md:bottom-auto md:absolute sm:hidden lg:hidden">
       <div className="relative w-60 h-60 md:w-40 md:h-40 flex items-center justify-center">
         {/* Rotating circle wrapper */}
         <div className="absolute w-full h-full animate-rotate-slow">
