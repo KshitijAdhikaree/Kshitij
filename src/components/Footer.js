@@ -14,7 +14,7 @@ const Footer = () => {
         <span>{new Date().getFullYear()} &copy; All Rights Reserved</span>
 
         <Link href="/">
-          <img
+          <Image
             src={mode === "light" ? "/images/logo/1.svg" : "/images/logo/2.svg"}
             alt="Logo"
             width={50}

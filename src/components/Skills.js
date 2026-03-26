@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import {
   SiHtml5,
-  SiCss3,
+  SiCss,
   SiJavascript,
   SiNodedotjs,
   SiMongodb,
@@ -55,7 +55,7 @@ const Skills = () => {
     {
       icons: [
         { icon: SiHtml5, name: "HTML5" },
-        { icon: SiCss3, name: "CSS3" },
+        { icon: SiCss, name: "CSS3" },
         { icon: SiJavascript, name: "JavaScript" },
         { icon: SiReact, name: "React" },
         { icon: SiTailwindcss, name: "Tailwind CSS" },
@@ -131,7 +131,7 @@ const Skills = () => {
             return (
               <Skill key={`${idx}-${i}`} icon={Icon} name={name} x={x} y={y} />
             );
-          })
+          }),
         )}
       </div>
     </>
