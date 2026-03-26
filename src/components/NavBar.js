@@ -68,7 +68,7 @@ const NavBar = () => {
   };
 
   return (
-    <header className="w-full px-32 py-8 font-medium flex items-center justify-between dark:text-light relative z-10 lg:px-16 md:px-12 sm:px-8">
+    <header className="w-full px-32 py-8 font-medium flex items-center justify-between dark:text-light bg-light/90 dark:bg-dark/90 backdrop-blur-md fixed top-0 left-0 z-50 lg:px-16 md:px-12 sm:px-8">
       <button
         className=" flex-col justify-center items-center hidden lg:flex"
         aria-label="onClick"
