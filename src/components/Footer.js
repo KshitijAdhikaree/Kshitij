@@ -20,6 +20,7 @@ const Footer = () => {
             width={50}
             height={50}
             className="object-contain hover:scale-110 transition-transform duration-300"
+            style={{ aspectRatio: '1/1' }}
           />
         </Link>
 

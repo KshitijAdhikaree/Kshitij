@@ -7,7 +7,6 @@ import useThemeSwitcher from "./hooks/useThemeSwitcher";
 const Logo = () => {
   const [mode] = useThemeSwitcher();
 
-
   return (
     <Link href="/">
       <Image
@@ -15,7 +14,8 @@ const Logo = () => {
         width={50}
         height={50}
         alt="Logo"
-        className="w-12 h-12 sm:w-10 sm:h-10 md:w-12 md:h-12"
+        className="w-12 h-12 sm:w-10 sm:h-10 md:w-12 md:h-12 hover:scale-110 transition-transform duration-300"
+        style={{ aspectRatio: '1/1' }}
       />
     </Link>
   );

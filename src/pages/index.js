@@ -1,12 +1,13 @@
 import Head from "next/head";
+import dynamic from "next/dynamic";
 import Layout from "@/components/Layout";
 import Image from "next/image";
 import profilePic from "../../public/images/profile/profile1.png";
 import AnimatedText from "@/components/AnimatedText";
 import Link from "next/link";
 import { LinkArrow } from "@/components/Icons";
-import HireMe from "@/components/HireMe";
-import TransitionEffect from "@/components/TransitionEffect";
+const HireMe = dynamic(() => import("@/components/HireMe"), { ssr: false });
+const TransitionEffect = dynamic(() => import("@/components/TransitionEffect"), { ssr: false });
 
 function Home() {
   return (
@@ -34,8 +35,10 @@ function Home() {
                   width={400}
                   height={400}
                   priority={true}
+                  fetchPriority="high"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                   className="-mt-32 lg:inline-block md:inline-block md:w-[24rem] sm:w-[20rem] xs:w-[14rem] xs:-mt-[100px]"
+
                 />
               </div>
             </div>
