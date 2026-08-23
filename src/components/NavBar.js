@@ -1,270 +1,139 @@
-import React, { useState } from "react";
 import Link from "next/link";
-import Logo from "./Logo";
 import { useRouter } from "next/router";
-import {
-  XIcon,
-  GithubIcon,
-  LinkedInIcon,
-  FacebookIcon,
-  YouTubeIcon,
-  SunIcon,
-  MoonIcon,
-} from "./Icons";
-import { motion } from "framer-motion";
-import useThemeSwitcher from "./hooks/useThemeSwitcher";
+import { useEffect, useRef, useState } from "react";
+import { useTheme } from "./ThemeContext";
+import { siteContent } from "@/data/siteContent";
+import Logo from "./Logo";
 
-const CustomLink = ({ href, title, className = "" }) => {
+const links = [
+  { href: "/applications", label: "Code" },
+  { href: "/photography", label: "Image" },
+  { href: "/videography", label: "Motion" },
+  { href: "/about", label: "About" },
+];
+
+export default function NavBar() {
   const router = useRouter();
+  const { mode, setMode } = useTheme();
+  const [open, setOpen] = useState(false);
+  const menuButtonRef = useRef(null);
+  const mobileMenuRef = useRef(null);
+  const previousFocusRef = useRef(null);
+  const previousBodyStylesRef = useRef(null);
+
+  useEffect(() => {
+    const close = () => setOpen(false);
+    router.events.on("routeChangeComplete", close);
+    return () => router.events.off("routeChangeComplete", close);
+  }, [router.events]);
+
+  useEffect(() => {
+    const handleKey = (event) => {
+      if (event.key === "Escape" && open) {
+        setOpen(false);
+        menuButtonRef.current?.focus();
+        return;
+      }
+
+      if (event.key === "Tab" && open) {
+        const focusable = mobileMenuRef.current?.querySelectorAll(
+          'a[href], button:not([disabled]), [tabindex="0"]'
+        );
+        if (!focusable?.length) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [open]);
+
+  useEffect(() => {
+    const html = document.documentElement;
+
+    if (open) {
+      previousFocusRef.current = document.activeElement;
+      previousBodyStylesRef.current = {
+        bodyOverflow: document.body.style.overflow,
+        htmlOverflowY: html.style.overflowY,
+      };
+
+      // Lock page scrolling while preserving the document scrollbar and layout width.
+      html.style.overflowY = "scroll";
+      document.body.style.overflow = "hidden";
+      requestAnimationFrame(() => mobileMenuRef.current?.querySelector("a")?.focus());
+    } else if (previousBodyStylesRef.current) {
+      document.body.style.overflow = previousBodyStylesRef.current.bodyOverflow;
+      html.style.overflowY = previousBodyStylesRef.current.htmlOverflowY;
+      previousBodyStylesRef.current = null;
+      previousFocusRef.current?.focus?.();
+      previousFocusRef.current = null;
+    }
+
+    return () => {
+      if (!open && previousBodyStylesRef.current) {
+        document.body.style.overflow = previousBodyStylesRef.current.bodyOverflow;
+        html.style.overflowY = previousBodyStylesRef.current.htmlOverflowY;
+      }
+    };
+  }, [open]);
+
+  const isActive = (href) => router.pathname === href || router.pathname.startsWith(`${href}/`);
+  const toggleTheme = () => setMode(mode === "dark" ? "light" : "dark");
+  const closeMenu = () => setOpen(false);
 
   return (
-    <Link href={href} className={`${className} relative group`}>
-      {title}
-      <span
-        className={`h-[2px] inline-block bg-dark absolute left-0 -bottom-0.5 group-hover:w-full transition-[width] ease duration-300 ${
-          router.asPath === href ? "w-full" : "w-0"
-        } dark:bg-light`}
-      >
-        &nbsp;
-      </span>
-    </Link>
-  );
-};
+    <header className="site-header">
+      <div className="site-header__inner page-shell">
+        <div className="site-brand"><Logo /></div>
 
-const CustomMobileLink = ({ href, title, className = "", toggle }) => {
-  const router = useRouter();
-
-  const handleClick = () => {
-    toggle();
-    router.push(href);
-  };
-
-  return (
-    <button
-      href={href}
-      className={`${className} relative group text-light dark:text-dark my-2`}
-      aria-label="lightDarkMode"
-      onClick={handleClick}
-    >
-      {title}
-      <span
-        className={`h-[1px] inline-block bg-light absolute left-0 -bottom-0.5 group-hover:w-full transition-[width] ease duration-300 ${
-          router.asPath === href ? "w-full" : "w-0"
-        } dark:bg-dark`}
-      >
-        &nbsp;
-      </span>
-    </button>
-  );
-};
-
-const NavBar = () => {
-  const [mode, setMode] = useThemeSwitcher();
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleClick = () => {
-    setIsOpen(!isOpen);
-  };
-
-  return (
-    <header className="w-full px-32 py-6 font-medium flex items-center justify-between dark:text-light bg-light/90 dark:bg-dark/90 backdrop-blur-md fixed top-0 left-0 z-10 lg:px-16 lg:py-6 md:px-12 md:py-6 sm:px-8 sm:py-6">
-      <button
-        className=" flex-col justify-center items-center hidden lg:flex"
-        aria-label="onClick"
-        onClick={handleClick}
-      >
-        <span
-          className={`bg-dark dark:bg-light block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm  ${
-            isOpen ? "rotate-45 translate-y-1" : "-translate-y-0.5"
-          }`}
-        ></span>
-        <span
-          className={`bg-dark dark:bg-light block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${
-            isOpen ? "opacity-0" : "opacity-100"
-          }`}
-        ></span>
-        <span
-          className={`bg-dark dark:bg-light block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm  ${
-            isOpen ? "-rotate-45 -translate-y-1" : "translate-y-0.5"
-          }`}
-        ></span>
-      </button>
-
-      {/* Desktop */}
-      <div className="w-full flex justify-between items-center lg:hidden">
-        <nav>
-          <CustomLink href="/" title="Home" className="mr-4" />
-          <CustomLink href="/about" title="About" className="mx-4" />
-          <CustomLink href="/projects" title="Projects" className="mx-4" />
-          <CustomLink href="/articles" title="Articles" className="ml-4" />
-        </nav>
-
-        <nav className="flex items-center justify-center flex-wrap ">
-          <motion.a
-            href="https://www.linkedin.com/in/kshitijadhikaree"
-            target={"_blank"}
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.9 }}
-            className="w-6 mx-3"
-          >
-            <LinkedInIcon />
-          </motion.a>
-
-          <motion.a
-            href="https://www.facebook.com/kshitizadhikaree"
-            target={"_blank"}
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.9 }}
-            className="w-6 mx-3 "
-          >
-            <FacebookIcon />
-          </motion.a>
-          <motion.a
-            href="https://www.youtube.com/@kshitizadhikaree"
-            target={"_blank"}
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.9 }}
-            className="w-6 mx-3"
-          >
-            <YouTubeIcon />
-          </motion.a>
-
-          <motion.a
-            href="https://github.com/KshitijAdhikaree"
-            target={"_blank"}
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.9 }}
-            className="w-6 mx-3"
-          >
-            <GithubIcon />
-          </motion.a>
-          <motion.a
-            href="https://x.com/KshitijAdhikar3"
-            target={"_blank"}
-            whileHover={{ y: -2 }}
-            whileTap={{ scale: 0.9 }}
-            className="w-6 ml-3 bg-white dark:bg-black"
-          >
-            <XIcon />
-          </motion.a>
-
-          <button
-            onClick={() => setMode(mode === "light" ? "dark" : "light")}
-            className={`ml-16 flex items-center justify-center rounded-full p-2 
-          ${mode === "light" ? "bg-dark text-light" : "bg-light text-dark"}`}
-            aria-label="lightDark"
-          >
-            {mode === "dark" ? (
-              <SunIcon className={"fill-dark"} />
-            ) : (
-              <MoonIcon className={"fill-dark"} />
-            )}
+        <nav className="site-nav" aria-label="Primary navigation">
+          {links.map((link) => <Link key={link.href} href={link.href} className={`site-nav__link ${isActive(link.href) ? "is-active" : ""}`}>{link.label}</Link>)}
+                    <button type="button" onClick={toggleTheme} className="theme-toggle" aria-label={`Switch to ${mode === "dark" ? "light" : "dark"} mode`}>
+            <span className="theme-toggle__icon" aria-hidden="true">
+              {mode === "dark" ? (
+                <svg viewBox="0 0 24 24" focusable="false"><path d="M20.7 15.1A8.5 8.5 0 0 1 8.9 3.3 8.5 8.5 0 1 0 20.7 15.1Z" /></svg>
+              ) : (
+                <svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" /></svg>
+              )}
+            </span>
           </button>
         </nav>
+
+        <button ref={menuButtonRef} type="button" className={`menu-toggle ${open ? "is-open" : ""}`} onClick={() => setOpen((value) => !value)} aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? "Close navigation menu" : "Open navigation menu"}>
+          <span className="menu-toggle__label">{open ? "Close" : "Menu"}</span><span className="menu-toggle__icon" aria-hidden="true"><i /><i /></span>
+        </button>
       </div>
-      {/* Mobile */}
-      {isOpen ? (
-        <motion.div
-          initial={{ scale: 0, opacity: 0, x: "-50%", y: "50%" }}
-          animate={{ scale: 1, opacity: 1 }}
-          className="fixed min-w-[70vw] flex flex-col justify-between z-30 items-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-dark/80 dark:bg-light/80 rounded-lg backdrop-blur-md py-[60px]"
-        >
-          <nav className="flex items-center flex-col justify-center ">
-            <CustomMobileLink
-              href="/"
-              title="Home"
-              className=""
-              toggle={handleClick}
-            />
-            <CustomMobileLink
-              href="/about"
-              title="About"
-              className=""
-              toggle={handleClick}
-            />
-            <CustomMobileLink
-              href="/projects"
-              title="Projects"
-              className=""
-              toggle={handleClick}
-            />
-            <CustomMobileLink
-              href="/articles"
-              title="Articles"
-              className="mb-6"
-              toggle={handleClick}
-            />
+
+      <div className={`mobile-nav ${open ? "is-open" : ""}`} id="mobile-menu" ref={mobileMenuRef} aria-hidden={!open}>
+        <button type="button" className="mobile-nav__backdrop" onClick={closeMenu} tabIndex={-1} aria-label="Close navigation menu" />
+        <div className="mobile-nav__panel">
+          <div className="mobile-nav__meta"><span>Navigation</span><span>{siteContent.identity.location}</span></div>
+          <nav className="mobile-nav__links" aria-label="Mobile navigation">
+            {links.map((link, index) => <Link key={link.href} href={link.href} tabIndex={open ? 0 : -1} onClick={closeMenu} className={`mobile-nav__link ${isActive(link.href) ? "is-active" : ""}`}><span>0{index + 1}</span>{link.label}<b aria-hidden="true">↗</b></Link>)}
           </nav>
-
-          <nav className="flex items-center justify-center ">
-            <motion.a
-              href="https://github.com/KshitijAdhikaree"
-              target={"_blank"}
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.9 }}
-              className="w-6 mr-3 bg-light/80 rounded-full dark:bg-dark/80"
-            >
-              <GithubIcon />
-            </motion.a>
-            <motion.a
-              href="https://x.com/KshitijAdhikar3"
-              target={"_blank"}
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.9 }}
-              className="w-6 mx-3 bg-light/80 rounded-md dark:bg-dark/80"
-            >
-              <XIcon />
-            </motion.a>
-            <motion.a
-              href="https://www.youtube.com/@kshitizadhikaree"
-              target={"_blank"}
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.9 }}
-              className="w-6 mx-3 bg-light/80 rounded-md dark:bg-dark/80"
-            >
-              <YouTubeIcon />
-            </motion.a>
-            <motion.a
-              href="https://www.linkedin.com/in/kshitijadhikaree/"
-              target={"_blank"}
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.9 }}
-              className="w-6 mx-3 bg-light/80 rounded-md dark:bg-dark/80"
-            >
-              <LinkedInIcon />
-            </motion.a>
-
-            <motion.a
-              href="https://www.facebook.com/kshitizadhikaree"
-              target={"_blank"}
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.9 }}
-              className="w-6 ml-3 bg-light/80 rounded-full dark:bg-dark/80"
-            >
-              <FacebookIcon />
-            </motion.a>
-          </nav>
-          <button
-            onClick={() => setMode(mode === "light" ? "dark" : "light")}
-            className={` mt-8 flex items-center justify-center rounded-full p-2 
-          ${mode === "light" ? "bg-dark text-light" : "bg-light text-dark"}`}
-            aria-label="lightDarkMobile"
-          >
-            {mode === "dark" ? (
-              <SunIcon className={"fill-dark"} />
-            ) : (
-              <MoonIcon className={"fill-dark"} />
-            )}
-          </button>
-        </motion.div>
-      ) : null}
-
-      <div className="absolute left-[50%] traslate-x-[-50%] md:left-[48%]">
-        <Logo />
+                    <div className="mobile-nav__footer">
+            <button type="button" onClick={toggleTheme} className="theme-toggle mobile-theme-toggle" tabIndex={open ? 0 : -1} aria-label={`Switch to ${mode === "dark" ? "light" : "dark"} mode`}>
+              <span className="theme-toggle__icon" aria-hidden="true">
+                {mode === "dark" ? (
+                  <svg viewBox="0 0 24 24" focusable="false"><path d="M20.7 15.1A8.5 8.5 0 0 1 8.9 3.3 8.5 8.5 0 1 0 20.7 15.1Z" /></svg>
+                ) : (
+                  <svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" /></svg>
+                )}
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
     </header>
   );
-};
+}
 
-export default NavBar;

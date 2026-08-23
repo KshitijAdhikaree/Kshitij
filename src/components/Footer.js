@@ -1,47 +1,53 @@
 import Link from "next/link";
-import React from "react";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import buyMeACoffee from "../../public/images/yellow-button.png";
-import useThemeSwitcher from "./hooks/useThemeSwitcher";
+import { siteContent } from "@/data/siteContent";
+import Logo from "./Logo";
 
-const Footer = () => {
-  const [mode] = useThemeSwitcher();
-
+export default function Footer() {
   return (
-    <footer className="w-full border-t-2 border-solid border-dark font-medium text-lg dark:border-light dark:text-light sm:text-base">
-      <div className="max-w-7xl mx-auto px-8 py-8 flex flex-row items-center justify-between gap-6 text-center md:flex-col md:items-center lg:px-16 lg:py-6 md:px-12 md:py-6 sm:px-8 sm:py-6">
-        <span>{new Date().getFullYear()} &copy; All Rights Reserved</span>
-
-        <Link href="/">
-          <Image
-            src={mode === "light" ? "/images/logo/1.svg" : "/images/logo/2.svg"}
-            alt="Logo"
-            width={50}
-            height={50}
-            className="object-contain hover:scale-110 transition-transform duration-300"
-            style={{ aspectRatio: '1/1' }}
-          />
-        </Link>
-
-        <motion.a
-          href="https://www.buymeacoffee.com/kshitijAd"
-          target="_blank"
-          whileHover={{ y: -2 }}
-          whileTap={{ scale: 0.9 }}
-          className="w-[180px] md:w-[120px]"
-        >
-          <Image
-            src={buyMeACoffee}
-            alt="Buy Me A Coffee"
-            as="image"
-            width={300}
-            height={200}
-          />
-        </motion.a>
+    <footer className="border-t hairline">
+      <div className="page-shell grid gap-10 py-16 md:grid-cols-[1.4fr_1fr_1fr] md:py-24">
+        <div>
+          <p className="eyebrow">Let&apos;s make something resonate</p>
+          <h2 className="display-title mt-6 max-w-md text-5xl sm:text-6xl">
+            Have a good idea? Let&apos;s give it a shape.
+          </h2>
+        </div>
+        <div className="md:justify-self-end">
+          <p className="eyebrow">Contact</p>
+          <a
+            href={`mailto:${siteContent.contact.email}`}
+            className="mt-5 block text-lg hover:text-[var(--accent)]"
+          >
+            {siteContent.contact.email}
+          </a>
+          <p className="mt-3 text-sm text-[var(--muted)]">
+            {siteContent.availability}
+          </p>
+        </div>
+        <div className="md:justify-self-end">
+          <p className="eyebrow">Elsewhere</p>
+          <div className="mt-5 flex flex-col gap-3">
+            {siteContent.social.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm hover:text-[var(--accent)]"
+              >
+                {item.label} 
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="page-shell flex flex-col justify-between gap-3 border-t hairline py-5 text-[10px] uppercase tracking-[0.2em] text-[var(--muted)] sm:flex-row">
+        <div className="flex items-center gap-3">
+          <Logo />
+          <span>© {new Date().getFullYear()} Kshitij Adhikaree</span>
+        </div>
+        <span>Code / image / motion</span>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

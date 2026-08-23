@@ -1,84 +1,83 @@
 import Head from "next/head";
-import dynamic from "next/dynamic";
-import Layout from "@/components/Layout";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import profilePic from "../../public/images/profile/profile1.png";
-import AnimatedText from "@/components/AnimatedText";
-import Link from "next/link";
-import { LinkArrow } from "@/components/Icons";
-const HireMe = dynamic(() => import("@/components/HireMe"), { ssr: false });
-const TransitionEffect = dynamic(() => import("@/components/TransitionEffect"), { ssr: false });
+import { FiCode, FiImage, FiPlay } from "react-icons/fi";
+import Layout from "@/components/Layout";
+import Reveal from "@/components/Reveal";
+import WorkCard from "@/components/WorkCard";
+import { siteContent } from "@/data/siteContent";
+import { work } from "@/data/work";
+import { photoGallery } from "@/data/photography";
+import { videoChannel } from "@/data/videography";
+import portrait from "../../public/images/profile/profile1.png";
 
-function Home() {
+export default function Home() {
+  const featured = work.slice(0, 3);
+  const featuredPhotos = photoGallery.slice(0, 3);
+  const reducedMotion = useReducedMotion();
+  const [disciplineIndex, setDisciplineIndex] = useState(0);
+  const disciplines = [
+    { label: "Code", Icon: FiCode },
+    { label: "Image", Icon: FiImage },
+    { label: "Motion", Icon: FiPlay },
+  ];
+  const currentDiscipline = disciplines[disciplineIndex];
+
+  useEffect(() => {
+    if (reducedMotion) return undefined;
+    const cycle = window.setInterval(() => {
+      setDisciplineIndex((index) => (index + 1) % 3);
+    }, 2400);
+    return () => window.clearInterval(cycle);
+  }, [reducedMotion]);
   return (
     <>
-      <Head>
-        <title>Kshitij | Home </title>
-        <meta name="description" content="description" />
-      </Head>
-      <TransitionEffect />
+      <Head><title>{siteContent.identity.name + " — Creative developer + visual storyteller"}</title><meta name="description" content={siteContent.identity.intro} /></Head>
+      <Layout className="homepage-shell page-layout">
+        <section className="homepage-hero">
+          <div className="homepage-hero__copy"><p className="eyebrow">{siteContent.identity.eyebrow} / {siteContent.identity.location}</p><h1 className="display-title homepage-hero__heading">Creative developer <em className="text-[var(--accent)]">+</em> visual storyteller.</h1><p className="homepage-hero__intro">{siteContent.identity.intro}</p></div>
+          <div className="homepage-hero__media"><div className="homepage-hero__ring" /><div className="homepage-hero__portrait"><Image src={portrait} alt="Portrait of Kshitij Adhikaree" fill priority className="object-cover grayscale-[.15]" sizes="(max-width: 767px) 88vw, (max-width: 1023px) 65vw, 40vw" /></div><div className="homepage-hero__badge" aria-label={"Current discipline: " + currentDiscipline.label}>
+  <AnimatePresence initial={false} mode="wait">
+    <motion.div key={currentDiscipline.label} className="homepage-hero__badge-icon" initial={reducedMotion ? false : { opacity: 0, scale: .7, rotate: -12 }} animate={{ opacity: 1, scale: 1, rotate: 0 }} exit={reducedMotion ? undefined : { opacity: 0, scale: .7, rotate: 12 }} transition={{ duration: .45, ease: [0.22, 1, .36, 1] }}>
+      <currentDiscipline.Icon aria-hidden="true" />
+      <span className="sr-only">{currentDiscipline.label}</span>
+    </motion.div>
+  </AnimatePresence>
+</div></div>
+        </section>
 
-      <main className="flex items-center text-dark w-full min-h-screen dark:text-light">
-        <Layout className="pt-0 md:p-16 sm:pt-2">
-          <div className="flex items-center justify-between w-full lg:flex-col">
-            <div className="w-1/2 lg:w-full md:w-full">
-              <div
-                className="w-[420px] h-[490px] bg-primaryDark dark:bg-primary border-[12px] border-dark transition-[border-radius] duration-[0.5s] ease-[cubic-bezier(0.175,0.885,0.32,1.275)] rounded-[10px] 
-              shadow-[inset_0_-3em_3em_rgba(0,0,0,0.1),0_0_0_2px_rgb(190,190,190),0.3em_0.3em_1em_rgba(0,0,0,0.3)]
-              dark:shadow-[inset_0_-3em_3em_rgba(255,255,255,0.1),0_0_0_2px_rgb(53,53,53),0.3em_0.3em_1em_rgba(255,255,255,0.3)]
-              mt-24 md:w-[20rem] md:h-[341px] md:mt-16 md:ml-[72px] sm:ml-18 xs:ml-8 lg:ml-[160px] sm:mt-32 mb-4 dark:border-light xs:w-[14rem] xs:h-[14rem]
-              "
-              >
-                <Image
-                  src={profilePic}
-                  alt="profilePic"
-                  width={400}
-                  height={400}
-                  priority={true}
-                  fetchPriority="high"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
-                  className="-mt-32 lg:inline-block md:inline-block md:w-[24rem] sm:w-[20rem] xs:w-[14rem] xs:-mt-[100px]"
+        <section className="homepage-facts"><div><span className="eyebrow">01 / Practice</span><p>Code, image, motion</p></div><div><span className="eyebrow">02 / Based in</span><p>Kathmandu, Nepal / working globally</p></div><div><span className="eyebrow">03 / Focus</span><p>Digital experiences with a point of view</p></div></section>
 
-                />
-              </div>
-            </div>
-            <div className="w-1/2 flex flex-col items-center self-center lg:w-full lg:text-center">
-              <AnimatedText
-                text="Bringing ideas to life with programming and design."
-                className="xl:!text-5xl lg:!text-center lg:!text-4xl md:!text-3xl sm:!text-3xl justify-center"
-              />
-              <p className="my-4 text-base font-medium md:text-sm sm:text-xs text-justify xs:text-base ">
-                As a skilled full-stack developer, I am dedicated to turning
-                ideas into innovative web applications. Explore my latest
-                projects and articles, showcasing my expertise in web design and
-                development.
-              </p>
-              <div className="flex items-center self-start mt-2 lg:self-center">
-                <Link
-                  href="/Resume.pdf"
-                  target={"_blank"}
-                  className="flex items-center bg-dark text-light p-2.5 px-6 rounded-lg text-lg font-semibold 
-                  hover:bg-light hover:text-dark border-2 border-solid border-transparent hover:border-dark
-                  dark:text-dark dark:bg-light dark:hover:border-light dark:hover:bg-dark dark:hover:text-light md:p-2 md:px-4 md:text-base"
-                  download={true}
-                >
-                  Resume <LinkArrow className={"w-6 ml-1"} />
-                </Link>
-                <Link
-                  href="https://mail.google.com/mail/u/0/?view=cm&fs=1&tf=1&to=adhikareekshitij@gmail.com&subject=Unable%20to%20reach%20you&body=Hello%2C%0A%0AI%20tried%20contacting%20you%20today%20but%20you%20seem%20to%20have%20missed%20my%20call.%20%0A%0APlease%20return%20my%20call%20as%20soon%20as%20you%E2%80%99re%20available.%20%0A%0AIn%20any%20case%2C%20I%20will%20try%20ringing%20you%20at%20a%20later%20time.%0A%0A%0ATy%2C%0A%0A%0A%0A"
-                  target={"_blank"}
-                  className="ml-4 text-lg font-medium capitalize text-dark underline dark:text-light md:text-base"
-                >
-                  Contact
-                </Link>
-              </div>
-            </div>
-          </div>
-        </Layout>
-        <HireMe />
-      </main>
+        <section className="homepage-media">
+  <div className="homepage-media__intro">
+    <p className="eyebrow">Image / motion</p>
+    <h2 className="display-title homepage-section-title">The work<br /><em className="text-[var(--accent)]">between frames.</em></h2>
+    <p className="homepage-media__copy">A closer look at the visual side of the practice: photographs made slowly, and moving images shaped by atmosphere.</p>
+  </div>
+  <div className="homepage-media__visuals">
+    <div className="homepage-photo-grid" aria-label="Selected photography">
+      {featuredPhotos.map((photo, index) => <div key={photo.id} className={"homepage-photo homepage-photo--" + (index + 1)}><Image src={photo.image} alt={photo.title} fill className="object-cover" sizes="(max-width: 767px) 50vw, 24vw" /></div>)}
+    </div>
+    <div className="homepage-video-card homepage-video-card--full">
+      <div className="homepage-video-card__screen">
+        <iframe src="https://www.youtube-nocookie.com/embed/CZAfqMWOBd0?autoplay=1&mute=1&playsinline=1&loop=1&playlist=CZAfqMWOBd0&controls=0&rel=0&modestbranding=1" title="Featured YouTube Short" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" referrerPolicy="strict-origin-when-cross-origin" />
+      </div>
+    </div>
+  </div>
+</section>
+<section className="homepage-work">
+  <div className="homepage-section-heading">
+    <p className="eyebrow">Selected work / 03</p>
+    <h2 className="display-title homepage-section-title">A few things <em className="text-[var(--accent)]">made with care.</em></h2>
+  </div>
+  <div className="homepage-work-grid">
+    {featured.map((item, index) => <Reveal key={item.slug} delay={index * .08} className={`homepage-work-grid__item homepage-work-grid__item--${index + 1}`}><WorkCard item={item} featured={index === 0} /></Reveal>)}
+  </div>
+</section>
+
+        <section className="homepage-services"><div><p className="eyebrow">What I do</p><h2 className="display-title homepage-section-title">Different tools.<br /><em className="text-[var(--accent)]">Same intention.</em></h2></div><div className="homepage-services__list">{siteContent.services.map((service) => <div key={service.number} className="homepage-service"><span className="font-mono text-xs text-[var(--accent)]">{service.number}</span><h3>{service.title}</h3><p>{service.text}</p></div>)}</div></section>
+      </Layout>
     </>
   );
 }
-
-export default Home;

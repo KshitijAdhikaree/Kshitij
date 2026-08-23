@@ -1,57 +1,46 @@
-"use client";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 
-const ThemeContext = createContext();
+const ThemeContext = createContext(null);
 
 export const ThemeProvider = ({ children }) => {
-  const [mode, setMode] = useState("");
+  const [mode, setMode] = useState("light");
+  const [initialized, setInitialized] = useState(false);
+  const initializedRef = useRef(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefer-color-scheme: dark)");
-    const userPref = window.localStorage.getItem("theme");
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const stored = window.localStorage.getItem("theme");
+    const next = stored === "dark" || stored === "light"
+      ? stored
+      : (mediaQuery.matches ? "dark" : "light");
 
-    const handleChange = () => {
-      if (userPref) {
-        let check = userPref === "dark" ? "dark" : "light";
-        setMode(check);
-        if (check === "dark") {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
-      } else {
-        let check = mediaQuery.matches ? "dark" : "light";
-        setMode(check);
-        window.localStorage.setItem("theme", check);
-        if (check === "dark") {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
+    // Read the saved choice before enabling persistence, so the default light
+    // state cannot overwrite a user's saved dark preference during hydration.
+    setMode(next);
+    document.documentElement.classList.toggle("dark", next === "dark");
+    initializedRef.current = true;
+    setInitialized(true);
+
+    const handleChange = (event) => {
+      if (!window.localStorage.getItem("theme")) {
+        const systemMode = event.matches ? "dark" : "light";
+        setMode(systemMode);
+        document.documentElement.classList.toggle("dark", systemMode === "dark");
       }
     };
-    handleChange();
 
     mediaQuery.addEventListener("change", handleChange);
-
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
   useEffect(() => {
-    if (mode === "dark") {
-      window.localStorage.setItem("theme", "dark");
-      document.documentElement.classList.add("dark");
-    } else if (mode === "light") {
-      window.localStorage.setItem("theme", "light");
-      document.documentElement.classList.remove("dark");
-    }
-  }, [mode]);
+    if (!initialized || !initializedRef.current) return;
 
-  return (
-    <ThemeContext.Provider value={{ mode, setMode }}>
-      {children}
-    </ThemeContext.Provider>
-  );
+    document.documentElement.classList.toggle("dark", mode === "dark");
+    window.localStorage.setItem("theme", mode);
+  }, [mode, initialized]);
+
+  return <ThemeContext.Provider value={{ mode, setMode }}>{children}</ThemeContext.Provider>;
 };
 
 export const useTheme = () => useContext(ThemeContext);

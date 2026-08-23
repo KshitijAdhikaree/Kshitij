@@ -19,7 +19,7 @@ const Details = ({ position, company, companyLink, time, address, work }) => {
           {position}&nbsp;{" "}
           <a
             href={companyLink}
-            target="_blank"
+            target="_blank" rel="noopener noreferrer"
             className="text-primary capitalize dark:text-primaryDark"
           >
             @{company}
@@ -57,7 +57,7 @@ const Experience = () => {
           <Details
             position="FullStack Web Developer"
             company="Upwork and Fiverr"
-            target="_blank"
+
             companyLink="https://www.upwork.com"
             time="2024 - Present"
             address="Remote"
@@ -66,7 +66,7 @@ const Experience = () => {
           <Details
             position="Mid-Level Software Engineer"
             company="Debugsoft Pvt. Ltd."
-            target="_blank"
+
             companyLink="https://debugsoft.com"
             time="June 2024 - Sep 2024"
             address="Kupandole, Kathmandu, Nepal"
@@ -75,7 +75,7 @@ const Experience = () => {
           <Details
             position="Junior Software Engineer"
             company="Debugsoft Pvt. Ltd."
-            target="_blank"
+
             companyLink="https://debugsoft.com"
             time="Jan 2024 - June 2024"
             address="Kupandole, Kathmandu, Nepal"
@@ -84,7 +84,7 @@ const Experience = () => {
           <Details
             position="Associate Software Engineer"
             company="Debugsoft Pvt. Ltd."
-            target="_blank"
+
             companyLink="https://debugsoft.com"
             time="Sept 2023 - Jan 2024"
             address="Kupandole, Kathmandu, Nepal"
@@ -93,7 +93,7 @@ const Experience = () => {
           <Details
             position="Intern Software Engineer"
             company="Debugsoft Pvt. Ltd."
-            target="_blank"
+
             companyLink="https://debugsoft.com"
             time="June 2023 - Sept 2023"
             address="Kupandole, Kathmandu, Nepal"
