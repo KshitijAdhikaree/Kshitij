@@ -3,7 +3,7 @@ export const videoChannel = {
   href: "https://www.youtube.com/@kshitizadhikaree",
 };
 
-export const longFormVideos = [{ videoId: "4NmHf4oLspY" }];
+export const longFormVideos = [{ videoId: "3UHI12eICT4" }];
 
 export const shortVideos = [
   { videoId: "o1t6FB4AuD4" },
