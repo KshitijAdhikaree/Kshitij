@@ -1540,7 +1540,7 @@ html.dark .menu-toggle__icon i { background: currentColor; }
 .video-youtube-link__stats small { color: var(--muted); font-family: var(--mono); font-size: .55rem; letter-spacing: .1em; line-height: 1; text-transform: uppercase; }.video-youtube-link__action { color: var(--accent); font-family: var(--mono); font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; }.video-youtube-cta { display: flex; align-items: center; gap: .85rem; }
 .video-youtube-subscribers { display: grid; gap: .15rem; }
 .video-youtube-subscribers strong { font-size: .85rem; font-weight: 600; line-height: 1; }
-.video-youtube-subscribers small { color: var(--muted); font-family: var(--mono); font-size: .55rem; letter-spacing: .1em; line-height: 1; text-transform: uppercase; }.homepage-video-card__screen iframe { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; border: 0; }
+.video-youtube-subscribers small { color: var(--muted); font-family: var(--mono); font-size: .55rem; letter-spacing: .1em; line-height: 1; text-transform: uppercase; }.homepage-video-card__screen iframe { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
 .homepage-video-card__screen .homepage-video-card__wash { z-index: 1; pointer-events: none; }
 .homepage-video-card__screen > .homepage-video-card__format,
 .homepage-video-card__screen > .homepage-video-card__duration { z-index: 2; }
@@ -1900,7 +1900,7 @@ html::-webkit-scrollbar-thumb:hover {
   background: var(--ink);
 }
 .homepage-video-card__facade img { width: 100%; height: 100%; object-fit: cover; opacity: .82; transition: transform .5s ease, opacity .5s ease; }
-.homepage-video-card__facade span { position: absolute; right: 1rem; bottom: 1rem; z-index: 1; border: 1px solid rgba(255,255,255,.45); border-radius: 999px; padding: .55rem .8rem; color: white; background: rgba(0,0,0,.35); font: 500 .7rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.homepage-video-card__facade span, .homepage-video-card__facade button { position: absolute; right: 1rem; bottom: 1rem; z-index: 1; border: 1px solid rgba(255,255,255,.45); border-radius: 999px; padding: .55rem .8rem; color: white; background: rgba(0,0,0,.35); font: 500 .7rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
 .homepage-video-card__facade:hover img, .homepage-video-card__facade:focus-visible img { transform: scale(1.04); opacity: 1; }
 .scroll-to-top {
   position: fixed;

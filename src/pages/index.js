@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { FiCode, FiImage, FiPlay } from "react-icons/fi";
@@ -11,24 +11,44 @@ import { work } from "@/data/work";
 import { photoGallery } from "@/data/photography";
 import portrait from "../../public/images/profile/profile1.png";
 function FeaturedVideo() {
+  const containerRef = useRef(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setReducedMotion(prefersReducedMotion);
+    if (prefersReducedMotion || !containerRef.current) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsLoaded(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px 0px" }
+    );
+
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="homepage-video-card homepage-video-card--full">
       <div className="homepage-video-card__screen">
         {isLoaded ? (
-          <iframe src="https://www.youtube-nocookie.com/embed/CZAfqMWOBd0?autoplay=1&mute=1&playsinline=1&loop=1&playlist=CZAfqMWOBd0&controls=0&rel=0&modestbranding=1" title="Featured YouTube Short" allow="autoplay; encrypted-media; picture-in-picture" referrerPolicy="strict-origin-when-cross-origin" />
+          <iframe src="https://www.youtube-nocookie.com/embed/CZAfqMWOBd0?autoplay=1&mute=1&playsinline=1&loop=1&playlist=CZAfqMWOBd0&controls=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0" title="Featured YouTube Short" allow="autoplay; encrypted-media; picture-in-picture" referrerPolicy="strict-origin-when-cross-origin" />
         ) : (
-          <button type="button" className="homepage-video-card__facade" onClick={() => setIsLoaded(true)} aria-label="Play featured YouTube Short">
-            <Image src="https://i.ytimg.com/vi/CZAfqMWOBd0/hqdefault.jpg" alt="" fill sizes="(max-width: 767px) 100vw, 270px" unoptimized />
-            <span aria-hidden="true">Play film ↗</span>
-          </button>
+          <div ref={containerRef} className="homepage-video-card__facade">
+            <Image src="https://i.ytimg.com/vi/CZAfqMWOBd0/hqdefault.jpg" alt="Featured YouTube Short preview" fill sizes="(max-width: 767px) 100vw, 270px" unoptimized />
+            {reducedMotion && <button type="button" onClick={() => setIsLoaded(true)} aria-label="Play featured YouTube Short">Play film ↗</button>}
+          </div>
         )}
       </div>
     </div>
   );
 }
-
 export default function Home() {
   const featured = work.slice(0, 3);
   const featuredPhotos = photoGallery.slice(0, 3);
