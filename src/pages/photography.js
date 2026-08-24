@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Layout from "@/components/Layout";
 import Reveal from "@/components/Reveal";
 import { siteContent } from "@/data/siteContent";
@@ -174,39 +175,41 @@ export default function Photography() {
             </a>
           </div>
         </section>
-      </Layout>
-      {selected && (
-        <div
-          className="photo-lightbox fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-5 sm:p-10"
-          role="dialog"
-          aria-modal="true"
-          aria-label={selected.title}
-          onClick={() => setSelected(null)}
-        >
-          <button
-            type="button"
-            className="photo-lightbox__close absolute right-6 top-6 rounded-full border border-white/30 px-4 py-2 text-xs uppercase tracking-[0.16em] text-white"
-            onClick={() => setSelected(null)}
-          >
-            Close ×
-          </button>
-          <div
-            className="relative h-[78vh] w-full max-w-5xl"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <Image
-              src={selected.image}
-              alt={selected.title}
-              fill
-              className="object-contain"
-              sizes="100vw"
-            />
-            <p className="absolute bottom-[-28px] left-0 text-xs uppercase tracking-[0.16em] text-white/60">
-              {selected.caption}
-            </p>
-          </div>
-        </div>
-      )}
+      </Layout>      {selected && typeof document !== "undefined"
+        ? createPortal(
+            <div
+              className="photo-lightbox fixed inset-0 z-[1200] flex items-center justify-center bg-black/90 p-5 sm:p-10"
+              role="dialog"
+              aria-modal="true"
+              aria-label={selected.title}
+              onClick={() => setSelected(null)}
+            >
+              <button
+                type="button"
+                className="photo-lightbox__close absolute right-6 top-6 rounded-full border border-white/30 px-4 py-2 text-xs uppercase tracking-[0.16em] text-white"
+                onClick={() => setSelected(null)}
+              >
+                Close ×
+              </button>
+              <div
+                className="relative h-[78vh] w-full max-w-5xl"
+                onClick={(event) => event.stopPropagation()}
+              >
+                <Image
+                  src={selected.image}
+                  alt={selected.title}
+                  fill
+                  className="object-contain"
+                  sizes="100vw"
+                />
+                <p className="absolute bottom-[-28px] left-0 text-xs uppercase tracking-[0.16em] text-white/60">
+                  {selected.caption}
+                </p>
+              </div>
+            </div>,
+            document.body
+          )
+        : null}
     </>
   );
 }

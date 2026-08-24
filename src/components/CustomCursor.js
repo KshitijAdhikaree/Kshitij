@@ -16,11 +16,31 @@ export default function CustomCursor() {
     let mouseY = window.innerHeight / 2;
     let ringX = mouseX;
     let ringY = mouseY;
+    let dotX = mouseX;
+    let dotY = mouseY;
+    let magneticTarget = null;
 
     const render = () => {
-      ringX += (mouseX - ringX) * 0.16;
-      ringY += (mouseY - ringY) * 0.16;
-      dot.style.transform = "translate3d(" + mouseX + "px, " + mouseY + "px, 0)";
+      let targetX = mouseX;
+      let targetY = mouseY;
+
+      if (magneticTarget?.isConnected) {
+        const rect = magneticTarget.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const strength = 0.28;
+        targetX += (centerX - targetX) * strength;
+        targetY += (centerY - targetY) * strength;
+      } else {
+        magneticTarget = null;
+        document.body.classList.remove("cursor-is-magnetic");
+      }
+
+      dotX += (targetX - dotX) * 0.28;
+      dotY += (targetY - dotY) * 0.28;
+      ringX += (targetX - ringX) * 0.16;
+      ringY += (targetY - ringY) * 0.16;
+      dot.style.transform = "translate3d(" + dotX + "px, " + dotY + "px, 0)";
       ring.style.transform = "translate3d(" + ringX + "px, " + ringY + "px, 0)";
       frame = requestAnimationFrame(render);
     };
@@ -28,6 +48,8 @@ export default function CustomCursor() {
     const move = (event) => {
       mouseX = event.clientX;
       mouseY = event.clientY;
+      magneticTarget = isInteractive(event.target);
+      document.body.classList.toggle("cursor-is-magnetic", Boolean(magneticTarget));
     };
 
     const isInteractive = (target) => target?.closest?.("a, button, [role='button'], input, textarea, select, summary");
@@ -37,7 +59,10 @@ export default function CustomCursor() {
     };
 
     const leaveInteractive = (event) => {
-      if (!isInteractive(event.relatedTarget)) document.body.classList.remove("cursor-is-hovering");
+      if (!isInteractive(event.relatedTarget)) {
+        document.body.classList.remove("cursor-is-hovering", "cursor-is-magnetic");
+        magneticTarget = null;
+      }
     };
 
     const leaveWindow = () => document.body.classList.add("cursor-is-hidden");
@@ -53,7 +78,7 @@ export default function CustomCursor() {
 
     return () => {
       cancelAnimationFrame(frame);
-      document.body.classList.remove("custom-cursor-enabled", "cursor-is-hovering", "cursor-is-hidden");
+      document.body.classList.remove("custom-cursor-enabled", "cursor-is-hovering", "cursor-is-magnetic", "cursor-is-hidden");
       document.removeEventListener("mousemove", move);
       document.removeEventListener("mouseover", enterInteractive);
       document.removeEventListener("mouseout", leaveInteractive);

@@ -1695,3 +1695,234 @@ html.dark .menu-toggle__icon i { background: currentColor; }
   overflow: hidden;
   border-radius: 1.5rem;
 }
+/* Mobile drawer: match the navbar glass and keep the full panel above page content. */
+.site-header,
+.mobile-nav__panel {
+  background: rgba(242, 239, 233, .72);
+}
+html.dark .site-header,
+html.dark .mobile-nav__panel {
+  background: rgba(17, 17, 16, .72);
+}
+.mobile-nav {
+  inset: 76px 0 0;
+  z-index: 1000;
+}
+.mobile-nav__panel {
+  width: 100%;
+  max-width: none;
+  min-height: 100%;
+  border-left: 0;
+  backdrop-filter: blur(18px) saturate(130%);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+}
+.mobile-nav__footer {
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+.mobile-nav__theme-label {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+@media (max-width: 480px) {
+  .mobile-nav { inset: 68px 0 0; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .site-header,
+  .mobile-nav__panel {
+    background: var(--paper);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+/* Keep both navigation surfaces on the same glass value in every theme. */
+:root { --navigation-glass: rgba(242, 239, 233, 1); }
+html.dark { --navigation-glass: rgba(17, 17, 16, 1); }
+.site-header,
+.mobile-nav__panel { background: var(--navigation-glass); }
+/* Ensure the opaque dark surface wins over earlier theme-specific overrides. */
+html.dark .site-header,
+html.dark .mobile-nav__panel {
+  background: var(--navigation-glass) !important;
+}
+/* Route-aware navigation transitions. */
+.route-content { view-transition-name: route-content; }
+.route-transition { position: fixed; inset: 0; z-index: 90; pointer-events: none; overflow: hidden; opacity: 0; }
+.route-transition.is-active { opacity: 1; }
+.route-transition > span { position: absolute; display: block; opacity: 0; pointer-events: none; }
+.route-transition__code { inset: 0; background: repeating-linear-gradient(90deg, transparent 0 14px, color-mix(in srgb, var(--accent) 16%, transparent) 15px, transparent 16px); mix-blend-mode: screen; }
+.route-transition__code::after { position: absolute; top: 0; right: 12%; bottom: 0; width: 1px; background: var(--accent); box-shadow: 0 0 24px 3px var(--accent); content: ""; }
+.route-transition__image { inset: 0; background: radial-gradient(circle at 70% 30%, color-mix(in srgb, var(--paper) 20%, transparent), transparent 34%), linear-gradient(110deg, transparent 25%, color-mix(in srgb, var(--accent) 18%, transparent) 50%, transparent 75%); mix-blend-mode: screen; }
+.route-transition__motion { inset: -20%; background: linear-gradient(110deg, transparent 38%, color-mix(in srgb, var(--accent) 20%, transparent) 50%, transparent 62%); filter: blur(16px); }
+.route-transition__scan { top: 0; right: 0; left: 0; height: 1px; background: var(--accent); box-shadow: 0 0 28px 4px var(--accent); }
+.route-transition--application.is-active .route-transition__code { opacity: .8; animation: route-code-in .42s cubic-bezier(.22,1,.36,1) both; }
+.route-transition--application.is-active .route-transition__scan { opacity: .9; animation: route-scan .42s cubic-bezier(.22,1,.36,1) both; }
+.route-transition--photography.is-active .route-transition__image { opacity: 1; animation: route-image-in .5s cubic-bezier(.22,1,.36,1) both; }
+.route-transition--motion.is-active .route-transition__motion { opacity: 1; animation: route-motion-in .46s cubic-bezier(.22,1,.36,1) both; }
+.route-transition--home.is-active .route-transition__code { opacity: .5; animation: route-code-in .2s ease-out both; }
+.route-transition--home.is-active .route-transition__image { opacity: .8; animation: route-image-in .38s .12s cubic-bezier(.22,1,.36,1) both; }
+.route-transition--home.is-active .route-transition__motion { opacity: 1; animation: route-motion-in .46s .22s cubic-bezier(.22,1,.36,1) both; }
+.route-transition--home.is-active .route-transition__scan { opacity: .7; animation: route-scan .3s .05s ease-out both; }
+.route-transition--about.is-active .route-transition__image { opacity: .35; animation: route-image-in .35s cubic-bezier(.22,1,.36,1) both; }
+.route-transition--default.is-active .route-transition__motion { opacity: .35; animation: route-motion-in .35s cubic-bezier(.22,1,.36,1) both; }
+@keyframes route-code-in { from { clip-path: inset(0 100% 0 0); transform: translateX(-2%); } to { clip-path: inset(0); transform: translateX(0); } }
+@keyframes route-image-in { from { clip-path: inset(0 0 0 100%); transform: scale(1.04); } to { clip-path: inset(0); transform: scale(1); } }
+@keyframes route-motion-in { from { transform: translateX(18%) skewX(-8deg); } to { transform: translateX(-18%) skewX(-8deg); } }
+@keyframes route-scan { from { transform: translateY(-10vh); } to { transform: translateY(110vh); } }
+@supports (view-transition-name: route-content) {
+  @view-transition { navigation: auto; }
+  ::view-transition-group(route-content) { animation-duration: .42s; }
+  ::view-transition-old(route-content) { animation: route-old-out .22s ease both; }
+  ::view-transition-new(route-content) { animation: route-new-in .42s cubic-bezier(.22,1,.36,1) both; }
+  html[data-route-transition="application"]::view-transition-new(route-content) { animation-name: route-code-view-in; }
+  html[data-route-transition="photography"]::view-transition-new(route-content) { animation-name: route-image-view-in; }
+  html[data-route-transition="motion"]::view-transition-new(route-content) { animation-name: route-motion-view-in; }
+  html[data-route-transition="home"]::view-transition-new(route-content) { animation-name: route-home-view-in; }
+  @keyframes route-old-out { to { opacity: 0; transform: scale(.985); } }
+  @keyframes route-new-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes route-code-view-in { from { opacity: 0; clip-path: inset(0 100% 0 0); } to { opacity: 1; clip-path: inset(0); } }
+  @keyframes route-image-view-in { from { opacity: 0; clip-path: inset(0 0 0 100%); transform: scale(1.03); } to { opacity: 1; clip-path: inset(0); transform: scale(1); } }
+  @keyframes route-motion-view-in { from { opacity: 0; transform: translateX(3%); filter: blur(4px); } to { opacity: 1; transform: translateX(0); filter: blur(0); } }
+  @keyframes route-home-view-in { 0% { opacity: 0; clip-path: inset(0 100% 0 0); } 45% { opacity: .7; clip-path: inset(0); } 100% { opacity: 1; clip-path: inset(0); } }
+}
+@media (prefers-reduced-motion: reduce) { .route-transition { display: none; } .route-content { view-transition-name: none; } }
+/* Smoothly morph the light/dark theme glyph without shifting the toggle. */
+.theme-toggle__icon { position: relative; }
+.theme-toggle__glyph { position: absolute; inset: 0; display: grid; place-items: center; }
+.theme-toggle__glyph svg { display: block; }
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle__glyph { transition: none; }
+}
+/* Theme changes expand from the clicked circular toggle across the page. */
+@supports (view-transition-name: root) {  /* Keep the sticky header out of the clipped root snapshot during theme changes. */
+  .site-header { view-transition-name: site-header; }
+  html[data-theme-transition]::view-transition-group(site-header) {
+    animation: none;
+    z-index: 2;
+  }
+  html[data-theme-transition]::view-transition-old(site-header),
+  html[data-theme-transition]::view-transition-new(site-header) {
+    animation: none;
+  }
+  html[data-theme-transition]::view-transition-group(root) {
+    animation: none;
+  }
+
+  html[data-theme-transition]::view-transition-old(root) {
+    animation: none;
+    z-index: 0;
+  }
+
+  html[data-theme-transition]::view-transition-new(root) {
+    z-index: 1;
+    animation: theme-reveal-from-toggle .62s cubic-bezier(.22, 1, .36, 1) both;
+  }
+
+  html[data-theme-transition-direction="to-light"]::view-transition-new(root) {
+    animation-duration: .68s;
+  }
+
+  @keyframes theme-reveal-from-toggle {
+    from {
+      clip-path: circle(0 at var(--theme-reveal-x) var(--theme-reveal-y));
+    }
+    to {
+      clip-path: circle(var(--theme-reveal-radius) at var(--theme-reveal-x) var(--theme-reveal-y));
+    }
+  }
+}
+/* Magnetic cursor feedback for interactive elements. */
+body.cursor-is-magnetic .custom-cursor__ring {
+  box-shadow: 0 0 34px color-mix(in srgb, var(--accent) 34%, transparent);
+}
+body.cursor-is-magnetic .custom-cursor__dot {
+  box-shadow: 0 0 22px color-mix(in srgb, var(--accent) 90%, transparent);
+}
+/* The route overlay must never paint the old vertical code grid. */
+.route-transition__code { background: transparent; }
+.route-transition__code::after { display: none; }
+
+/* Remove page-wide route-transition glow; keep navigation transitions unobtrusive. */
+.route-transition__image,
+.route-transition__motion {
+  background: transparent;
+  filter: none;
+  mix-blend-mode: normal;
+}
+.route-transition__scan {
+  background: transparent;
+  box-shadow: none;
+}
+.route-transition__code {
+  mix-blend-mode: normal;
+}
+
+/* Theme-aware app scrollbar. */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--muted) 72%, var(--accent)) var(--paper);
+}
+html::-webkit-scrollbar {
+  width: 10px;
+}
+html::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+html::-webkit-scrollbar-thumb {
+  border: 3px solid var(--paper);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--muted) 72%, var(--accent));
+}
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* Keep the custom cursor visible above portaled overlays such as the photo lightbox. */
+.custom-cursor__dot,
+.custom-cursor__ring {
+  z-index: 1300;
+}
+
+.homepage-video-card__facade {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background: var(--ink);
+}
+.homepage-video-card__facade img { width: 100%; height: 100%; object-fit: cover; opacity: .82; transition: transform .5s ease, opacity .5s ease; }
+.homepage-video-card__facade span { position: absolute; right: 1rem; bottom: 1rem; z-index: 1; border: 1px solid rgba(255,255,255,.45); border-radius: 999px; padding: .55rem .8rem; color: white; background: rgba(0,0,0,.35); font: 500 .7rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.homepage-video-card__facade:hover img, .homepage-video-card__facade:focus-visible img { transform: scale(1.04); opacity: 1; }
+.scroll-to-top {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: 60;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--paper);
+  background: var(--ink);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(.75rem);
+  transition: opacity .25s ease, transform .25s ease, background-color .25s ease, color .25s ease;
+}
+.scroll-to-top.is-visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.scroll-to-top:hover { color: var(--paper); background: var(--accent); transform: translateY(-3px); }
+.scroll-to-top svg { width: 1rem; height: 1rem; stroke-width: 1.8; }
+@media (prefers-reduced-motion: reduce) {
+  .scroll-to-top { transition: none; }
+}
